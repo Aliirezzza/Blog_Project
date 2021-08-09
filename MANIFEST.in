@@ -1,0 +1,5 @@
+include LICENSE.rst
+graft magahazam/static
+graft magahazam/templates
+graft tests
+global-exclude *.pyc
