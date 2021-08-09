@@ -33,7 +33,10 @@ def create_app(test_config=None):
 
     # register the database commands
     
-    from blog import order,auth
+    from blog import blog,user,api
+    app.register_blueprint(blog.bp)
+    app.register_blueprint(user.bp)
+    app.register_blueprint(api.bp)
 
     
     app.add_url_rule("/", endpoint="index")
