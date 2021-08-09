@@ -1,0 +1,44 @@
+body {
+    font-size: 28px;
+}
+
+#NavbarUl {
+    max-width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #546e7a;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+#NavbarUl li {
+    float: right;
+}
+
+#NavbarUl li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#NavbarUl li a:hover {
+    background-color: #29434e;
+}
+
+#NavbarUl .active {
+    background-color: #7f0000;
+}
+
+#FirstLine {
+    padding: 2% 6% 2% 6%;
+    background-color: #F8F9FA;
+}
+
+#Image {
+    max-width: 100%;
+}
