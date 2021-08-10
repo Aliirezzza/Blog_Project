@@ -17,7 +17,7 @@ bp = Blueprint("blog", __name__)
 @bp.route("/home/")
 def index():
     db = get_db()
-    posts = db.post.find().sort({"date_created": -1})
+    posts = db.post.find().sort({"create_date": -1})
     for post in posts:
         post['_id'] = str(post['_id'])
     return render_template('blog/home.html', posts=posts)
