@@ -1,11 +1,118 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth/signup.css') }}">
+{#    <link rel="stylesheet" href="../../static/css/auth/signup.css">#}
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='js/auth/signup.js') }}"></script>
+{#    <script type='text/javascript' src="../../static/js/auth/signup.js"></script>#}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <section class="ftco-section">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="login-wrap py-5 mt-100">
+          <div class="img d-flex align-items-center justify-content-center"></div>
+          <h3 class="text-center mb-0 p">Welcome</h3>
+          <p class="text-center p">Sign up by entering the information below</p>
+          <form id="register_form" action="{{ url_for('') }}" method="post" enctype="multipart/form-data" class="login-form">
+            <!-- name -->
+            <div class="form-group">
+              <div class="icon d-flex align-items-center justify-content-center pr-2">
+                <div class="pr-2">
+                  <input id="first_name" type="text" class="form-control" placeholder="First Name" required="">
+                </div>
+                <div class="">
+                  <input id="last_name" type="text" class="form-control " placeholder="Last Name" required="">
+                </div>
+              </div>
+            </div>
+            <!-- password -->
+            <div class="form-group">
+              <input id="password" type="text" class="form-control" placeholder="Password" required="">
+            </div>
+            <!-- repeat_password -->
+            <div class="form-group">
+              <input id="repeat_password" type="text" class="form-control" placeholder="Repeat password" required="">
+            </div>
+            <!-- email -->
+            <div class="form-group">
+              <input id="email" type="text" class="form-control" placeholder="Email" required>
+            </div>
+            <!-- mobile_number -->
+            <div class="form-group">
+              <input id="mobile_number" type="text" class="form-control" placeholder="Mobile Number" required>
+            </div>
+            <!-- SUBMIT -->
+            <div class="form-group">
+              <button id="SUBMIT" type="submit" class="btn btn-info form-control rounded submit px-3">SUBMIT</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+
+
+
+
+<div class="container">
+  <section class="ftco-section">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="login-wrap py-5 mt-100">
+          <div class="img d-flex align-items-center justify-content-center"></div>
+          <h3 class="text-center mb-0 p">Welcome</h3>
+          <p class="text-center p">Sign up by entering the information below</p>
+          <form id="register_form" action="{{ url_for('') }}" method="post" enctype="multipart/form-data" class="login-form">
+            <!-- name -->
+            <div class="form-group">
+              <div class="icon d-flex align-items-center justify-content-center pr-2">
+                <div class="pr-2">
+                  <input id="first_name" type="text" class="form-control" placeholder="First Name" required="">
+                </div>
+                <div class="">
+                  <input id="last_name" type="text" class="form-control " placeholder="Last Name" required="">
+                </div>
+              </div>
+            </div>
+            <!-- password -->
+            <div class="form-group">
+              <input id="password" type="text" class="form-control" placeholder="Password" required="">
+            </div>
+            <!-- repeat_password -->
+            <div class="form-group">
+              <input id="repeat_password" type="text" class="form-control" placeholder="Repeat password" required="">
+            </div>
+            <!-- email -->
+            <div class="form-group">
+              <input id="email" type="text" class="form-control" placeholder="Email" required>
+            </div>
+            <!-- mobile_number -->
+            <div class="form-group">
+              <input id="mobile_number" type="text" class="form-control" placeholder="Mobile Number" required>
+            </div>
+            <!-- SUBMIT -->
+            <div class="form-group">
+              <button id="SUBMIT" type="submit" class="btn btn-info form-control rounded submit px-3">SUBMIT</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
