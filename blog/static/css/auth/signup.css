@@ -1,0 +1,119 @@
+
+
+
+.pb-5, .py-5 {
+    padding-bottom: 3rem !important;
+}
+
+.pt-5, .py-5 {
+    padding-top: 3rem !important;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #ababab;
+    border-color: #55057e;
+    outline: 0;
+    box-shadow: 0 0 0 0rem rgb(85, 5, 126)
+}
+
+.btn-secondary:focus {
+    box-shadow: 0 0 0 0rem rgba(108, 117, 125, .5)
+}
+
+.close:focus {
+    box-shadow: 0 0 0 0rem rgba(108, 117, 125, .5)
+}
+
+.mt-100 {
+    margin-top: 100px
+}
+
+.mt-200 {
+    margin-top: 200px
+}
+
+
+element.style {
+}
+.login-wrap {
+    position: relative;
+    background: #000232;
+    border-radius: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    /*-webkit-box-shadow: 0px 10px 34px -15px rgb(0 ,0 ,0, / 24%);*/
+    -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+    /*box-shadow: 0px 10px 34px -15px rgb(0 0 0 / 24%);*/
+}
+.pb-5, .py-5 {
+    padding-bottom: 3rem !important;
+}
+.pt-5, .py-5 {
+    padding-top: 3rem !important;
+}
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+body {
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fbd1b7;
+    color: gray;
+}
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    /*background-color: #fff;*/
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btn{
+  color: aliceblue;
+  background-color: darkmagenta ;
+
+}
+.p{
+  color: aliceblue;
+}
+.modal-body, .x{
+  background-color: #fbd1b7;
+}
+.pt-3,.pt-5{
+    background: #fbd1b7;
+
+}
+
+
+
+
+
+
+
+
+
+

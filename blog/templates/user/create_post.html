@@ -1,11 +1,17 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_post/create_post.css') }}">
+{#    <link rel="stylesheet" href="../../static/css/auth/login.css">#}
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='js/create_post/create_post.js') }}"></script>
+{#    <script type='text/javascript' src="../../static/js/auth/login.js"></script>#}
+{% endblock %}
+
+{% block body %}
+
+
+{% endblock %}
+
+
