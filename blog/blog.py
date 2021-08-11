@@ -23,7 +23,7 @@ def index():
     return render_template('blog/home.html', posts=posts)
 
 
-@bp.route("posts/<string:post_id>")
+@bp.route("/posts/<string:post_id>")
 def post_detail(post_id):
     db = get_db()
     post = db.post.find({"_id": ObjectId(post_id)})
