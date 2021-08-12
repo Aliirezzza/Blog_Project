@@ -21,10 +21,10 @@
 
 {% block body %}
 
-    <div oncontextmenu='return false' class='snippet-body rtl'>
+    <div oncontextmenu='return false' class='snippet-body mb-100 rtl'>
         <div class="container">
-            <div class="row d-flex justify-content-center mt-200">
-                <div class="card text-center " style="width: 38rem;">
+            <div class="row d-flex justify-content-center mb-100 mt-200">
+                <div class="card text-center mb-100 " style="width: 38rem;">
                     <div class="card-header p">
                         ساخت پست جدید
                     </div>
@@ -50,7 +50,7 @@
 
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form action="{{ url_for('blog.create') }}" method="post">
                                 <div id="smartwizard">
                                     <ul>
                                         <li><a href="#step-1">گام اول<br/><small>عنوان و بدنه</small></a></li>
@@ -62,12 +62,12 @@
                                         <div id="step-1">
                                             <!-- Title -->
                                             <div class="row justify-content-center x">
-                                                <div class="col-md-6 x"><input type="text" class="form-control"
+                                                <div class="col-md-6 x"><input type="Title" name="" class="form-control"
                                                                                placeholder="عنوان" required></div>
                                             </div>
                                             <!-- contex -->
                                             <div class="row pt-3 justify-content-center">
-                                                <div class="col-md-6 x"><textarea type="text" class="form-control"
+                                                <div class="col-md-6 x"><textarea type="text"name="contex" class="form-control"
                                                                                   rows="3" placeholder="نوشته اصلی"
                                                                                   required></textarea></div>
                                             </div>
@@ -77,7 +77,7 @@
                                             <div class="row justify-content-center x">
                                                 <div class="col-md-6 rtl x">
 
-                                                    <select id="select-category" name="subject" tabindex="-1"
+                                                    <select id="select-category" name="category" tabindex="-1"
                                                             class="btn btn-outline-info" aria-hidden="true">
                                                         <option disabled="disabled" selected="selected">انتخاب کنید</option>
                                                         {% for category in categories %}
@@ -89,14 +89,14 @@
                                             </div>
                                             <!-- tags -->
                                             <div class="row pt-3 justify-content-center x">
-                                                <div class="col-md-6 x"><input type="text" class="form-control"
+                                                <div class="col-md-6 x"><input type="text" name="tags" class="form-control"
                                                                                placeholder="تگ ها" required></div>
                                             </div>
                                         </div>
                                         <div id="step-3">
                                             <!-- image -->
                                             <div class="row justify-content-center x">
-                                                <div class="col-md-6 x"><input type="file" class="btn btn-outline-info"
+                                                <div class="col-md-6 x"><input type="file" name="image" class="btn btn-outline-info"
                                                                                placeholder="عکس" required></div>
                                             </div>
                                         </div>
@@ -109,7 +109,7 @@
                                                             را منتشر کنید؟</label>
                                                         <div class="col-md-6 text-center x">
                                                             <label class="radio-container p-r-55">بله
-                                                                <input type="radio" checked="checked" name="exist">
+                                                                <input type="radio" checked="checked" name="activition">
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                             <br>
@@ -123,7 +123,7 @@
                                             </div>
                                             <!-- submit -->
                                             <div class="row justify-content-center x">
-                                                <button id="SubmitButton" type="submit" class="btn btn-info btn-lg"
+                                                <button id="SubmitButton" type="submit" name="submit" class="btn btn-info btn-lg"
                                                         data-dismiss="modal"><b>ایجاد</b></button>
                                             </div>
                                         </div>
