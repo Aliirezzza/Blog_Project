@@ -8,6 +8,7 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+from werkzeug.utils import secure_filename
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 
@@ -107,7 +108,7 @@ def login():
             # store the user id in a new session and return to the index
             session.clear()
             session["username"] = user["username"]
-            return redirect(url_for("home"))
+            return redirect(url_for("index"))
 
         flash(error)
         print(error)
