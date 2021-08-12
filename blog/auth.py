@@ -57,6 +57,13 @@ def signup():
         mobile = request.form["mobile"]
         username = request.form["username"]
         password = request.form["password"]
+        f = request.files.get('image')
+        if f:
+            fname = secure_filename(f.filename)
+            f.save('blog/static/media/' + fname)
+            image = fname
+        else:
+            image = None
         db = get_db()
         error = None
 
@@ -72,8 +79,8 @@ def signup():
             error = f"User {username} is already registered."
 
         if error is None:
-           
-            db.user.insert_one({"username":username,"password":generate_password_hash(password)})
+            user={"first_name":first_name,"last_name":last_name,"mobile":mobile,"email":email,"image":image,"username":username,"password":generate_password_hash(password)}
+            db.user.insert_one(user)
             return redirect(url_for("auth.login"))
 
         flash(error)
