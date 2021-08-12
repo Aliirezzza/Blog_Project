@@ -19,46 +19,46 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap py-5 mt-100">
                         <div class="img d-flex align-items-center justify-content-center"></div>
-                        <h3 class="text-center mb-0 p">Welcome</h3>
-                        <p class="text-center p">Sign up by entering the information below</p>
+                        <h3 class="text-center mb-0 p">خوش آمدید</h3>
+                        <p class="text-center p">ثبت نام از طریق وارد کردن اطلاعت زیر</p>
                         <form id="register_form" action="{{ url_for('') }}" method="post" enctype="multipart/form-data"
                               class="login-form">
                             <!-- name -->
                             <div class="form-group">
                                 <div class="icon d-flex align-items-center justify-content-center pr-2">
                                     <div class="pr-2">
-                                        <input id="first_name" type="text" class="form-control" placeholder="First Name"
+                                        <input id="first_name" type="text" class="form-control" placeholder="نام"
                                                required="">
                                     </div>
                                     <div class="">
-                                        <input id="last_name" type="text" class="form-control " placeholder="Last Name"
+                                        <input id="last_name" type="text" class="form-control " placeholder="نام خانوادگی"
                                                required="">
                                     </div>
                                 </div>
                             </div>
                             <!-- password -->
                             <div class="form-group">
-                                <input id="password" type="text" class="form-control" placeholder="Password"
+                                <input id="password" type="text" class="form-control" placeholder="رمز عبور"
                                        required="">
                             </div>
                             <!-- repeat_password -->
                             <div class="form-group">
                                 <input id="repeat_password" type="text" class="form-control"
-                                       placeholder="Repeat password" required="">
+                                       placeholder="تکرار رمز عبور" required="">
                             </div>
                             <!-- email -->
                             <div class="form-group">
-                                <input id="email" type="text" class="form-control" placeholder="Email" required>
+                                <input id="email" type="text" class="form-control" placeholder="ایمیل" required>
                             </div>
                             <!-- mobile_number -->
                             <div class="form-group">
-                                <input id="mobile_number" type="text" class="form-control" placeholder="Mobile Number"
+                                <input id="mobile_number" type="text" class="form-control" placeholder="شماره موبایل"
                                        required>
                             </div>
                             <!-- SUBMIT -->
                             <div class="form-group">
                                 <button id="SUBMIT" type="submit" class="btn btn-info form-control rounded submit px-3">
-                                    SUBMIT
+                                    ثبت اطلاعات
                                 </button>
                             </div>
                         </form>
