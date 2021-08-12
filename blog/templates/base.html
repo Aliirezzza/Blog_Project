@@ -16,55 +16,34 @@
 
     <div id="FirstLine">
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-6">
+
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <button type="button" class="btn btn-secondary">SignUp</button>
                 <button type="button" class="btn btn-light">SignIn</button>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right;">
+
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="input-group">
+                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="button" class="btn btn-outline-primary">search</button>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-4" style="text-align: right;">
                 <strong>My Blog</strong>
             </div>
+
         </div>
     </div>
 
-    <ul id="NavbarUl">
-        <div class="container">
-            <li><a class="active" href="#home">test</a></li>
+    <ul>
+        <div class="container" id="NavbarUl">
+            <li><a href="#home">test</a></li>
             <li><a href="#news">test</a></li>
             <li><a href="#contact">test</a></li>
         </div>
     </ul>
-
-    <div class="container">
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <img src=" " alt="" id="Image" class="rounded mx-auto d-block">
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <img src=" " alt="" id="Image" class="rounded mx-auto d-block">
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <img src=" " alt=" " id="Image" class="rounded mx-auto d-block">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <img src=" " alt="" id="Image" class="rounded mx-auto d-block">
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <img src=" " alt="" id="Image" class="rounded mx-auto d-block">
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <img src=" " alt=" " id="Image" class="rounded mx-auto d-block">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-            </div>
-        </div>
-    </div>
+    <br><br>
     {% block body %}{% endblock %}
     <footer class="text-center text-lg-start bg-light text-muted">
 
@@ -74,28 +53,6 @@
                 <span>Get connected with us on social networks:</span>
             </div>
 
-
-
-            <div>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
 
         </section>
 
