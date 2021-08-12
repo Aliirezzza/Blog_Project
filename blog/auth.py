@@ -51,6 +51,10 @@ def signup():
     password for security.
     """
     if request.method == "POST":
+        first_name = request.form["first_name"]
+        last_name = request.form["last_name"]
+        email = request.form["email"]
+        mobile = request.form["mobile"]
         username = request.form["username"]
         password = request.form["password"]
         db = get_db()
