@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
-{% block body %}
+
     {% block script %}
 
-    <script src="{{url_for('static', filename='js/home/home.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/home/home.js') }}"></script>
 
-    {{super()}}
+
 
     {% endblock %}
+    {% block body %}
     <div class="container">
         <div class="row">
             <div class="col-xl col-lg col-md col-sm col-xs">
+                {% for post in posts %}
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -18,14 +20,14 @@
                                     <div class="col-md-12 col-sm-12 col col-xs-12">
 
                                         <h4><a href="#" class="text-dark" style="float: right; margin-top:5%">
-                                                Mobin Aghaei</a></h4>
+                                            {{ post.title }}</a></h4>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col col-xs-12">
 
                                         <p class="text-muted" style="float: right;">
-                                            pub-date</p>
+                                            {{ post.create_date }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +94,9 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
+
 {% endblock %}
