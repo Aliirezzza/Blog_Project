@@ -30,9 +30,14 @@
 .mt-200 {
     margin-top: 200px
 }
-
-
-element.style {
+input::-webkit-input-placeholder {
+    text-align: right;
+}
+textarea::-webkit-input-placeholder {
+    text-align: right;
+}
+.input{
+direction: rtl;
 }
 .login-wrap {
     position: relative;

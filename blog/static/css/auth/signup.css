@@ -32,9 +32,14 @@
     margin-top: 200px
 }
 
-
-element.style {
+input::-webkit-input-placeholder {
+    text-align: right;
 }
+
+.input{
+direction: rtl;
+}
+
 .login-wrap {
     position: relative;
     background: #000232;

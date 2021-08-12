@@ -1,36 +1,38 @@
 {% extends 'base.html' %}
 {% block style %}
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css"/>
-    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css"
+          rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/create_post/create_post.css') }}">
     {#    <link rel="stylesheet" href="../../static/css/create_post/create_post.css">#}
 {% endblock %}
 
 {% block script %}
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
+    <script type='text/javascript'
+            src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
     <script src="{{ url_for('static', filename='js/create_post/create_post.js') }}"></script>
     {#    <script type='text/javascript' src="../../static/js/create_post/create_post.js"></script>#}
 {% endblock %}
 
 {% block body %}
 
-    <div oncontextmenu='return false' class='snippet-body'>
-
+    <div oncontextmenu='return false' class='snippet-body rtl'>
         <div class="container">
             <div class="row d-flex justify-content-center mt-200">
                 <div class="card text-center " style="width: 38rem;">
                     <div class="card-header p">
-                        Create New Post
+                        ساخت پست جدید
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title p">POST</h5>
-                        <p class="card-text p">With supporting text below as a natural lead-in to additional
-                            content.</p>
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"><b>Create
-                            Post</b></button>
+                        <h5 class="card-title rtl p">پست</h5>
+                        <p class="card-text rtl p">شما میتوانید نوشته های خود را از این طریق منتشر کنید</p>
+                        <button type="button" class="btn btn-info rtl" data-toggle="modal" data-target="#exampleModal">
+                            <b>ایجاد پست</b></button>
                     </div>
                 </div>
             </div>
@@ -39,78 +41,79 @@
                  aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background-color: #000232">
-                            <h5 class="modal-title p" id="exampleModalLabel">Create new Post</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                                    style="color: white"><span
+                        <div class="modal-header rtl " style="background-color: #000232">
+
+                            <button type="button" class=" " data-dismiss="modal" aria-label="Close"
+                                    style="color: white;background: #000232"><span
                                     aria-hidden="true">&times;</span></button>
+                            <h5 class="modal-title p" id="exampleModalLabel">ساخت پست جدید</h5>
+
                         </div>
                         <div class="modal-body">
-                            <form action="{{ url_for('') }}" method="post" enctype="multipart/form-data"
-                                  id="create_post">
+                            <form>
                                 <div id="smartwizard">
                                     <ul>
-                                        <li><a href="#step-1">Step 1<br/><small>Title & body</small></a></li>
-                                        <li><a href="#step-2">Step 2<br/><small>Category & Tags</small></a></li>
-                                        <li><a href="#step-3">Step 3<br/><small>Image</small></a></li>
-                                        <li><a href="#step-4">Step 4<br/><small>Detail</small></a></li>
+                                        <li><a href="#step-1">گام اول<br/><small>عنوان و بدنه</small></a></li>
+                                        <li><a href="#step-2">گام دوم<br/><small>تگ و دسته بندی</small></a></li>
+                                        <li><a href="#step-3">گام سوم<br/><small>عکس</small></a></li>
+                                        <li><a href="#step-4">گام آخر<br/><small>ویژگی ها</small></a></li>
                                     </ul>
                                     <div class="mt-4">
                                         <div id="step-1">
                                             <!-- Title -->
                                             <div class="row justify-content-center x">
                                                 <div class="col-md-6 x"><input type="text" class="form-control"
-                                                                               placeholder="Title" required></div>
+                                                                               placeholder="عنوان" required></div>
                                             </div>
                                             <!-- contex -->
                                             <div class="row pt-3 justify-content-center">
                                                 <div class="col-md-6 x"><textarea type="text" class="form-control"
-                                                                                  rows="3" placeholder="Contex"
+                                                                                  rows="3" placeholder="نوشته اصلی"
                                                                                   required></textarea></div>
                                             </div>
                                         </div>
                                         <div id="step-2">
                                             <!-- select category -->
                                             <div class="row justify-content-center x">
-                                                <div class="col-md-6 x">
-                                                    <label for="select-category">Select category </label>
+                                                <div class="col-md-6 rtl x">
+
                                                     <select id="select-category" name="subject" tabindex="-1"
                                                             class="btn btn-outline-info" aria-hidden="true">
-                                                        <option disabled="disabled" selected="selected">Choose option
-                                                        </option>
-                                                        <option>Subject 1</option>
-                                                        <option>Subject 2</option>
-                                                        <option>Subject 3</option>
+                                                        <option disabled="disabled" selected="selected">انتخاب کنید</option>
+                                                        {% for category in categories %}
+                                                          <option>{{ category }}</option>
+                                                        {% endfor %}
                                                     </select>
+                                                    <label for="select-category">دسته بندی پست</label>
                                                 </div>
                                             </div>
                                             <!-- tags -->
                                             <div class="row pt-3 justify-content-center x">
                                                 <div class="col-md-6 x"><input type="text" class="form-control"
-                                                                               placeholder="Tags" required></div>
+                                                                               placeholder="تگ ها" required></div>
                                             </div>
                                         </div>
                                         <div id="step-3">
                                             <!-- image -->
                                             <div class="row justify-content-center x">
                                                 <div class="col-md-6 x"><input type="file" class="btn btn-outline-info"
-                                                                               placeholder="Image" required></div>
+                                                                               placeholder="عکس" required></div>
                                             </div>
                                         </div>
                                         <div id="step-4" class="">
                                             <!-- activition -->
                                             <div class="row justify-content-center x">
                                                 <div class="col-md-6 x">
-                                                    <div class="row justify-content-center x">
-                                                        <label class="label label--block ">Do you want to published your
-                                                            new post?</label>
+                                                    <div class="row justify-content-center rtl x">
+                                                        <label class="label label--block ">آیا قصد دارید که بست جدیدتان
+                                                            را منتشر کنید؟</label>
                                                         <div class="col-md-6 text-center x">
-                                                            <label class="radio-container p-r-55">Yes
+                                                            <label class="radio-container p-r-55">بله
                                                                 <input type="radio" checked="checked" name="exist">
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                             <br>
-                                                            <label class="radio-container">No
+                                                            <label class="radio-container">نه
                                                                 <input type="radio" name="exist">
                                                                 <span class="checkmark"></span>
                                                             </label>
@@ -121,7 +124,7 @@
                                             <!-- submit -->
                                             <div class="row justify-content-center x">
                                                 <button id="SubmitButton" type="submit" class="btn btn-info btn-lg"
-                                                        data-dismiss="modal"><b>CREATE</b></button>
+                                                        data-dismiss="modal"><b>ایجاد</b></button>
                                             </div>
                                         </div>
                                     </div>
@@ -132,7 +135,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 {% endblock %}
