@@ -1,5 +1,0 @@
-Flask
-pymongo
-
-[test]
-pytest
