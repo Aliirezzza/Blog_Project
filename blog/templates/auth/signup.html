@@ -24,8 +24,8 @@
                         <form id="register_form" action="{{ url_for('auth.signup') }}" method="post" enctype="multipart/form-data" class="login-form">
                             <!-- name -->
                             <div class="form-group">
-                                <div class="icon d-flex align-items-center justify-content-center pr-2">
-                                    <div class="pr-2">
+                                <div class="icon d-flex align-items-center justify-content-center ">
+                                    <div class="pr-3">
                                         <input id="first_name"name="first_name" type="text" class="form-control" placeholder="نام"
                                                required="">
                                     </div>
@@ -57,6 +57,11 @@
                             <div class="form-group">
                                 <input id="mobile_number"name="mobile" type="text" class="form-control" placeholder="شماره موبایل"
                                        required>
+                            </div>
+                             <!-- image -->
+                            <div class="form-group">
+                                <input type="file" name="image" class="form-control"
+                                                                               placeholder="عکس" required>
                             </div>
                             <!-- SUBMIT -->
                             <div class="form-group">
