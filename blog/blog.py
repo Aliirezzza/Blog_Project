@@ -23,10 +23,6 @@ def index():
     li = [post for post in posts]
     for post in posts:
         post['_id'] = str(post['_id'])
-        print(post['_id'])
-        print(post['title'])
-        print(post['image'])
-        print(post['create_date'])
     return render_template('blog/home.html', posts=li)
 
 

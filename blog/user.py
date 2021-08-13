@@ -16,7 +16,7 @@ bp = Blueprint("user", __name__)
 
 @bp.route("/create", methods=("GET", "POST"))
 @login_required
-def create():
+def create_post():
     if request.method == "POST":
         title = request.form["title"]
         body = request.form["body"]

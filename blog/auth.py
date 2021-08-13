@@ -97,7 +97,7 @@ def login():
         db = get_db()
         error = None
        
-        user=db.user.find_one({"username":username})
+        user = db.user.find_one({"username":username})
         print(user)
         if user is None:
             error = "Incorrect username."
@@ -119,4 +119,4 @@ def login():
 def logout():
     """Clear the current session, including the stored user id."""
     session.clear()
-    return redirect(url_for("home"))
+    return redirect(url_for("blog.index"))
