@@ -5,7 +5,7 @@
           type="text/css"/>
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css"
           rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_post/create_post.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user/create_post.css') }}">
     {#    <link rel="stylesheet" href="../../static/css/create_post/create_post.css">#}
 {% endblock %}
 
@@ -15,8 +15,8 @@
             src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
-    <script src="{{ url_for('static', filename='js/create_post/create_post.js') }}"></script>
-    {#    <script type='text/javascript' src="../../static/js/create_post/create_post.js"></script>#}
+    <script src="{{ url_for('static', filename='js/user/create_post.js') }}"></script>
+    {#    <script type='text/javascript' src="../../static/js/user/create_post.js"></script>#}
 {% endblock %}
 
 {% block body %}
@@ -32,7 +32,8 @@
                         <h5 class="card-title rtl p">پست</h5>
                         <p class="card-text rtl p">شما میتوانید نوشته های خود را از این طریق منتشر کنید</p>
                         <button type="button" class="btn btn-info rtl" data-toggle="modal" data-target="#exampleModal">
-                            <b>ایجاد پست</b></button>
+                            <b>ایجاد پست</b>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -42,12 +43,10 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header rtl " style="background-color: #000232">
-
-                            <button type="button" class=" " data-dismiss="modal" aria-label="Close"
-                                    style="color: white;background: #000232"><span
-                                    aria-hidden="true">&times;</span></button>
+                            <button type="button" class=" " data-dismiss="modal" aria-label="Close" style="color: white;background: #000232">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             <h5 class="modal-title p" id="exampleModalLabel">ساخت پست جدید</h5>
-
                         </div>
                         <div class="modal-body">
                             <form action="{{ url_for('user.create_post') }}" method="post">
@@ -62,26 +61,25 @@
                                         <div id="step-1">
                                             <!-- Title -->
                                             <div class="row justify-content-center x">
-                                                <div class="col-md-6 x"><input type="Title" name="" class="form-control"
-                                                                               placeholder="عنوان" required></div>
+                                                <div class="col-md-6 x">
+                                                    <input type="text" name="title" class="form-control" placeholder="عنوان" required>
+                                                </div>
                                             </div>
-                                            <!-- contex -->
+                                            <!-- content-->
                                             <div class="row pt-3 justify-content-center">
-                                                <div class="col-md-6 x"><textarea type="text"name="contex" class="form-control"
-                                                                                  rows="3" placeholder="نوشته اصلی"
-                                                                                  required></textarea></div>
+                                                <div class="col-md-6 x">
+                                                    <textarea type="text" name="content"class="form-control" rows="3" placeholder="نوشته اصلی" required></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                         <div id="step-2">
                                             <!-- select category -->
                                             <div class="row justify-content-center x">
                                                 <div class="col-md-6 rtl x">
-
-                                                    <select id="select-category" name="category" tabindex="-1"
-                                                            class="btn btn-outline-info" aria-hidden="true">
+                                                    <select id="select-category" name="category" tabindex="-1"class="btn btn-outline-info" aria-hidden="true">
                                                         <option disabled="disabled" selected="selected">انتخاب کنید</option>
                                                         {% for category in categories %}
-                                                          <option>{{ category }}</option>
+                                                            <option>{{ category }}</option>
                                                         {% endfor %}
                                                     </select>
                                                     <label for="select-category">دسته بندی پست</label>
@@ -89,15 +87,15 @@
                                             </div>
                                             <!-- tags -->
                                             <div class="row pt-3 justify-content-center x">
-                                                <div class="col-md-6 x"><input type="text" name="tags" class="form-control"
-                                                                               placeholder="تگ ها" required></div>
+                                                <div class="col-md-6 x"><input type="text" name="tag" class="form-control" placeholder="تگ ها" required></div>
                                             </div>
                                         </div>
                                         <div id="step-3">
                                             <!-- image -->
                                             <div class="row justify-content-center x">
-                                                <div class="col-md-6 x"><input type="file" name="image" class="btn btn-outline-info"
-                                                                               placeholder="عکس" required></div>
+                                                <div class="col-md-6 x">
+                                                    <input type="file" id="image" name="image" class="btn btn-outline-info" placeholder="عکس" required>
+                                                </div>
                                             </div>
                                         </div>
                                         <div id="step-4" class="">
@@ -108,14 +106,14 @@
                                                         <label class="label label--block ">آیا قصد دارید که بست جدیدتان
                                                             را منتشر کنید؟</label>
                                                         <div class="col-md-6 text-center x">
-                                                            <label class="radio-container p-r-55">بله
-                                                                <input type="radio" checked="checked" name="activition">
+                                                            <label class="radio-container " style="color: white">بله
+                                                                <input type="radio" checked="checked" name="activition" value="yes">
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                             <br>
-                                                            <label class="radio-container">نه
-                                                                <input type="radio" name="exist">
-                                                                <span class="checkmark"></span>
+                                                            <label class="radio-container " style="color: white">نه
+                                                                <input type="radio" name="activition" value="no">
+                                                                <span class="checkmark" </span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -123,8 +121,9 @@
                                             </div>
                                             <!-- submit -->
                                             <div class="row justify-content-center x">
-                                                <button id="SubmitButton" type="submit" name="submit" class="btn btn-info btn-lg"
-                                                        data-dismiss="modal"><b>ایجاد</b></button>
+                                                <button id="SubmitButton" type="submit" name="submit" class="btn btn-info btn-lg">
+                                                    <b>ایجاد</b>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
