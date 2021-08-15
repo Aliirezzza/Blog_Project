@@ -11,7 +11,7 @@ showStepURLhash: false,
 
 });
 
-$('#SUBMIT').click(function(e){
-  e.preventDefault();
-  $('#register_form').submit();
-})
+// $('#SUBMIT').click(function(e){
+//   e.preventDefault();
+//   $('#register_form').submit();
+// })
