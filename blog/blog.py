@@ -29,14 +29,16 @@ def index():
 @bp.route("/posts/<string:post_id>")
 def post_detail(post_id):
     db = get_db()
-    post = db.post.find({"_id": ObjectId(post_id)})
+    posts = db.post.find({"_id": ObjectId(post_id)})
+    li = [p for p in posts]
+    post = li[0]
 
     post['_id'] = str(post['_id'])
 
     if post is None:
         abort(404, f"Post id {post_id} doesn't exist.")
 
-    if post["author"] != g.user["username"]:
+    if post["author_username"] != g.user["username"]:
         abort(403)
 
     return render_template("blog/post.html", post=post)

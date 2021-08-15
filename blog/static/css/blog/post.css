@@ -1,0 +1,29 @@
+
+.mt-40 {
+    margin-top: 40px
+}
+.mt-20 {
+    margin-top: 20px
+}
+.mb-100 {
+    margin-bottom: 100px
+}
+
+.mr-40 {
+    margin-right: 40px
+}
+.ml-40 {
+    margin-left: 40px
+}
+p{
+direction: rtl;
+    float: right;
+}
+h4,h5{
+direction: rtl;
+}
+.rtl{direction: rtl;}
+
+div {
+    display: block;
+}
