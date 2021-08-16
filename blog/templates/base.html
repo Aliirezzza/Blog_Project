@@ -4,12 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     {% block style %}{% endblock %}
     {% block script %}{% endblock %}
+
 
 </head>
 
@@ -26,9 +32,9 @@
                     <button type="button" class="btn btn-light">خروج</button>
                 </a>
             </div>
-{#            <a href="{{ url_for("user.create_post") }}" style="text-decoration: none">#}
-{#                <button type="button" class="btn btn-secondary">ساخت پست</button>#}
-{#            </a>#}
+            {#            <a href="{{ url_for("user.create_post") }}" style="text-decoration: none">#}
+            {#                <button type="button" class="btn btn-secondary">ساخت پست</button>#}
+            {#            </a>#}
 
 
         {% else %}
@@ -71,34 +77,33 @@
     </div>
 </div>
 <div class="col-2" style="float: right">
-    <div class="border-end bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading border-bottom bg-light" style="text-align: right">عناوین</div>
-        <div class="list-group list-group-flush" style="text-align: right">
-            <p> دسته بندی ها</p>
-            <ul style="list-style-type: none">
-                <li><a class="list-group-item list-group-item-action list-group-item-light p-3"
-                       href="#!">خنده دار</a></li>
-                <li><a class="list-group-item list-group-item-action list-group-item-light p-3"
-                       href="#!">مذهبی</a></li>
-                <li><a class="list-group-item list-group-item-action list-group-item-light p-3"
-                       href="#!">علمی</a></li>
-                <li><a class="list-group-item list-group-item-action list-group-item-light p-3"
-                       href="#!">آموزشی</a></li>
-            </ul>
-            <p>تگ ها</p>
-            <ul style="list-style-type: none">
-                <li><a class="list-group-item list-group-item-action list-group-item-light p-3"
-                       href="#!">تهران</a></li>
-                <li><a class="list-group-item list-group-item-action list-group-item-light p-3"
-                       href="#!">موبایل</a></li>
-                <li><a class="list-group-item list-group-item-action list-group-item-light p-3"
-                       href="#!">عکس</a></li>
-                <li><a class="list-group-item list-group-item-action list-group-item-light p-3"
-                       href="#!">غذا</a></li>
-            </ul>
+    <div class="card side mt-3" id="categories-card">
+        <div class="card-header side-header">
+            <p class="card-text row flex-row-reverse" style="font-size: 18px; margin-right: 2px">دسته‌بندی مطالب</p>
+        </div>
+        <div class="card-body" style="border:0.001mm solid #e7e7e7">
+            <div class="dropdown dropleft float-left">
+                <button type="button" class="btn btn-white" data-toggle="dropdown"><i class="fa fa-fw fa-arrow-left">
+                </i></button>
+                <div class="dropdown-menu mr-3">
+                    <a class="dropdown-item" href="#">Link 1</a>
+                    <a class="dropdown-item" href="#">Link 2</a>
+                    <a class="dropdown-item" href="#">Link 3</a>
+                </div>
+            </div>
+            <a href="#">اپل &nbsp&nbsp</a>
         </div>
     </div>
+    <div class="card side mt-3">
+        <div class="card-header side-header">
+            <div class="card-title row flex-row-reverse">
+                <p class="mr-3">برچسب ها</p>
+            </div>
+        </div>
+        <div class="card-body" id="body-tags">
 
+        </div>
+    </div>
 </div>
 
 {% block body %}{% endblock %}
@@ -185,7 +190,21 @@
         <a class="text-reset fw-bold" href="#">Blog.com</a>
     </div>
 </footer>
+{% block js %}
+    <script>
 
+        $.ajax({
+            type: "Get",
+            url: "{{ url_for('api.tags') }}",
+            success: function (resp) {
+                console.log(resp);
+                for (let tag of resp.tags) {
+                    $('#body-tags').append(`<button id="button-tag" href="#">${tag.name}</button>`)
+                }
+            }
+        });
+
+    </script>
+{% endblock %}
 </body>
-
 </html>
