@@ -1,3 +1,4 @@
 venv/*
-media/
-.idea/
+blog_project.egg-info/*
+instance/*
+blog/__pycache__/*
