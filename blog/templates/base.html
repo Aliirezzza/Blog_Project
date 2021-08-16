@@ -24,30 +24,28 @@
 <div id="FirstLine">
     <div class="row">
         {% if g.user %}
-        <div class="col-md-4 col-sm-4 col-xs-4">
-            <p style="display: inline-block"> خوش آمدید
-                {{ g.user["username"] }}
-            </p>
-            <a href="{{ url_for(" auth.logout") }}">
-            <button type="button" class="btn btn-light">خروج</button>
-            </a>
-        </div>
-        {# <a href="{{ url_for(" user.create_post") }}" style="text-decoration: none">#}
-        {#
-        <button type="button" class="btn btn-secondary">ساخت پست</button>
-        #}
-        {#            </a>#}
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <p style="display: inline-block"> خوش آمدید
+                    {{ g.user["username"] }}
+                </p>
+                <a href="{{ url_for("auth.logout") }}">
+                    <button type="button" class="btn btn-light">خروج</button>
+                </a>
+            </div>
+            {#            <a href="{{ url_for("user.create_post") }}" style="text-decoration: none">#}
+            {#                <button type="button" class="btn btn-secondary">ساخت پست</button>#}
+            {#            </a>#}
 
 
         {% else %}
-        <div class="col-md-4 col-sm-4 col-xs-4">
-            <a href="{{ url_for(" auth.signup") }}" style="text-decoration: none">
-            <button type="button" class="btn btn-secondary">ثبتنام</button>
-            </a>
-            <a href="{{ url_for(" auth.login") }}">
-            <button type="button" class="btn btn-light">ورود</button>
-            </a>
-        </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <a href="{{ url_for("auth.signup") }}" style="text-decoration: none">
+                    <button type="button" class="btn btn-secondary">ثبتنام</button>
+                </a>
+                <a href="{{ url_for("auth.login") }}">
+                    <button type="button" class="btn btn-light">ورود</button>
+                </a>
+            </div>
 
         {% endif %}
 
@@ -78,7 +76,7 @@
     <div class="col-10">
     </div>
 </div>
-<div class="col-3" style="float: right">
+<div class="col-2" style="float: right">
     <div class="card side mt-3" id="categories-card">
         <div class="card-header side-header">
             <p class="card-text row flex-row-reverse" style="font-size: 18px; margin-right: 2px">دسته‌بندی مطالب</p>
@@ -93,19 +91,7 @@
                     <a class="dropdown-item" href="#">Link 3</a>
                 </div>
             </div>
-            <a href="#">علمی &nbsp&nbsp</a>
-        </div>
-        <div class="card-body" style="border:0.001mm solid #e7e7e7">
-            <div class="dropdown dropleft float-left">
-                <button type="button" class="btn btn-white" data-toggle="dropdown"><i class="fa fa-fw fa-arrow-left">
-                </i></button>
-                <div class="dropdown-menu mr-3">
-                    <a class="dropdown-item" href="#">Link 1</a>
-                    <a class="dropdown-item" href="#">Link 2</a>
-                    <a class="dropdown-item" href="#">Link 3</a>
-                </div>
-            </div>
-            <a href="#">ورزشی &nbsp&nbsp</a>
+            <a href="#">اپل &nbsp&nbsp</a>
         </div>
     </div>
     <div class="card side mt-3">
@@ -205,20 +191,20 @@
     </div>
 </footer>
 {% block js %}
-<script>
+    <script>
 
-    $.ajax({
-        type: "Get",
-        url: "{{ url_for('api.tags') }}",
-        success: function (resp) {
-            console.log(resp);
-            for (let tag of resp.tags) {
-                $('#body-tags').append(`<button id="button-tag" href="#">${tag.name}</button>`)
+        $.ajax({
+            type: "Get",
+            url: "{{ url_for('api.tags') }}",
+            success: function (resp) {
+                console.log(resp);
+                for (let tag of resp.tags) {
+                    $('#body-tags').append(`<button id="button-tag" href="#">${tag.name}</button>`)
+                }
             }
-        }
-    });
+        });
 
-</script>
+    </script>
 {% endblock %}
 </body>
 </html>
