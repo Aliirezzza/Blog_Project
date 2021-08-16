@@ -35,21 +35,20 @@ def post_detail(post_id):
 
 @bp.route("/category-posts/<string:category_id>/")
 def category(category_id):
-
     db = get_db()
-    posts = db.post.find({"category_id":category_id[0]})
+    posts = db.post.find({"category_id": ObjectId(category_id)})
     posts = [post for post in posts]
-    categories = db.category.find()
-    categories = [i for i in categories]
-    return render_template("blog/category.html",categories=categories, posts=posts, category_id=category_id)
+    # categories = db.category.find()
+    # categories = [i for i in categories]
+    return render_template("blog/category.html",posts=posts)
 
 @bp.route("/tag-posts/<string:tag_id>/")
 def tag(tag_id):
 
     db = get_db()
-    posts = db.post.find({"category_id":tag_id[0]})
+    posts = db.post.find({"tag_id":ObjectId(tag_id)})
     posts = [post for post in posts]
-    tags = db.tag.find()
-    tags = [tag for tag in tags]
-    return render_template("blog/tag.html",tags=tags, posts=posts, tag_id=tag_id)
+    # tags = db.tag.find()
+    # tags = [tag for tag in tags]
+    return render_template("blog/tag.html", posts=posts)
 
