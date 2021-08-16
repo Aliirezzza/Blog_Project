@@ -42,3 +42,14 @@ def category(category_id):
     categories = db.category.find()
     categories = [i for i in categories]
     return render_template("blog/category.html",categories=categories, posts=posts, category_id=category_id)
+
+@bp.route("/tag-posts/<string:tag_id>/")
+def tag(tag_id):
+
+    db = get_db()
+    posts = db.post.find({"category_id":tag_id[0]})
+    posts = [post for post in posts]
+    tags = db.tag.find()
+    tags = [tag for tag in tags]
+    return render_template("blog/tag.html",tags=tags, posts=posts, tag_id=tag_id)
+
