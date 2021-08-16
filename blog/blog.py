@@ -33,3 +33,12 @@ def post_detail(post_id):
 
     return render_template("blog/post.html", post=post)
 
+@bp.route("/category-posts/<string:category_id>/")
+def category(category_id):
+
+    db = get_db()
+    posts = db.post.find({"category_id":category_id[0]})
+    posts = [post for post in posts]
+    categories = db.category.find()
+    categories = [i for i in categories]
+    return render_template("blog/category.html",categories=categories, posts=posts, category_id=category_id)
