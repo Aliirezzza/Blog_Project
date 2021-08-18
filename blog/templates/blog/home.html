@@ -7,19 +7,20 @@
 
 {% endblock %}
 {% block body %}
+
     <div class="container">
         <div class="row">
             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
                 {% for post in posts %}
-                    <div class="card">
+                    <div class="card" style="margin-bottom: 20px">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col col-xs-10" style="padding-right: 0%;">
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 col col-xs-12">
 
-                                            <h4><a href="{{ url_for('blog.post_detail', post_id=post._id) }}" class="text-dark" style="float: right; margin-top:5%">
-                                                {{ post.title }}</a></h4>
+                                            <h4><a href="#" class="text-dark" style="float: right; margin-top:5%">
+                                                {{ g.user["first_name"] }}</a></h4>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -34,7 +35,8 @@
 
 
                                     <a href="#">
-                                        <img src="" alt="photo not found"
+                                        <img src="{{ url_for('static',filename=g.user['image']) }}"
+                                             alt="photo not found"
                                              style="max-width: 80%; border-radius: 100%; float:right">
                                     </a>
 
@@ -42,12 +44,12 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ url_for('blog.post_detail', post_id=post._id) }}" style="color:#000000;text-decoration: none;">
+                        <a href="#" style="color:#000000;text-decoration: none;">
                             <div class="card-body">
                                 <div class="row">
 
                                     <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <h5 class="card-title">category</h5>
+                                        <h5 class="card-title">{{ post.category }}</h5>
                                     </div>
 
 
@@ -60,7 +62,8 @@
                                 <p class="card-text" style="float:right;">With supporting text below as a natural
                                     lead-in to additional content.
                                 </p>
-                                <img src="static/{{ post.image }}" class="img-fluid" alt="Responsive image" style="object-fit: cover; ;width: 1000px; height:500px;">
+                                <img src="{{ url_for('static',filename=post.image) }}" class="img-fluid"
+                                     alt="Responsive image" style="object-fit: cover; ;width: 1000px; height:500px;">
                             </div>
                         </a>
                         <div class="card-footer">
@@ -88,14 +91,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 1%;">
-                                        <span class="badge bg-secondary" style="padding: 1%;"><a href="#"
-                                                                                                 style="text-decoration: none;color:#ffffff">tag</a></span>
-                                        <span class="badge bg-secondary" style="padding: 1%;"><a href="#"
-                                                                                                 style="text-decoration: none;color:#ffffff">tag</a></span>
-                                        <span class="badge bg-secondary" style="padding: 1%;"><a href="#"
-                                                                                                 style="text-decoration: none;color:#ffffff">tag</a></span>
-                                        <span class="badge bg-secondary" style="padding: 1%;"><a href="#"
-                                                                                                 style="text-decoration: none;color:#ffffff">tag</a></span>
+                                        {% for tag in tags %}
+
+
+
+                                            <span class="badge bg-secondary" style="padding: 1%;"><a href="{{ url_for("blog.tag", tag_id="") }}{{ tag.id }} }}"
+                                                                                                     style="text-decoration: none;color:#ffffff">{{ tag.name }}<</a></span>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
