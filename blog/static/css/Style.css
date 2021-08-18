@@ -50,7 +50,7 @@ i:hover {
     outline: none;
 }
 .side {
-    width: 15rem;
+    width: 20rem;
     text-align: right;
 }
 .side a {
@@ -79,4 +79,28 @@ i:hover {
 }
 .card-body a:hover {
     text-decoration: none;
+}
+
+#button-tag {
+    color:grey;
+    background-color: white;
+    border: 0.1mm solid silver;
+    border-radius: 10%;
+}
+
+#column_left {
+	background-color: white;
+}
+
+.nav-list li a {
+	text-decoration: none;
+	display: block;
+	padding: 10px;
+	cursor: pointer;
+	border-bottom:0.001mm solid #e7e7e7;
+    color: black;
+}
+
+.accordion-heading {
+    background-color: #d5d4d4;
 }
