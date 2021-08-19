@@ -5,12 +5,14 @@
           type="text/css"/>
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css"
           rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/user/create_post.css') }}">
     {#    <link rel="stylesheet" href="../../static/css/create_post/create_post.css">#}
 {% endblock %}
 
 {% block script %}
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type='text/javascript'
             src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
     <script type="text/javascript"
@@ -48,7 +50,7 @@
                             </button>
                             <h5 class="modal-title p" id="exampleModalLabel">ساخت پست جدید</h5>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body ui-front">
                             <form action="{{ url_for('user.create_post') }}" method="post" enctype="multipart/form-data" >
                                 <div id="smartwizard">
                                     <ul>
@@ -78,16 +80,14 @@
                                                 <div class="col-md-6 rtl x">
                                                     <select id="select-category" name="category" tabindex="-1"class="btn btn-outline-info" aria-hidden="true">
                                                         <option disabled="disabled" selected="selected">انتخاب کنید</option>
-                                                        {% for category in categories %}
-                                                            <option>{{ category }}</option>
-                                                        {% endfor %}
+
                                                     </select>
                                                     <label for="select-category">دسته بندی پست</label>
                                                 </div>
                                             </div>
                                             <!-- tags -->
                                             <div class="row pt-3 justify-content-center x">
-                                                <div class="col-md-6 x"><input type="text" name="tag" class="form-control" placeholder="تگ ها" required></div>
+                                                <div class="col-md-6 x"><input id="tag-input" type="text" name="tag" class="form-control" placeholder="تگ ها" required></div>
                                             </div>
                                         </div>
                                         <div id="step-3">
@@ -113,7 +113,7 @@
                                                             <br>
                                                             <label class="radio-container " style="color: white">نه
                                                                 <input type="radio" name="activition" value="no">
-                                                                <span class="checkmark" </span>
+                                                                <span class="checkmark"></span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -136,6 +136,41 @@
         </div>
     </div>
 
+{% endblock %}
+{% block js %}
+    <script>
+
+        $.ajax({
+            type: "Get",
+            url: "{{ url_for('api.categories') }}",
+            success: function (resp) {
+                for (let cat of resp.categories) {
+                    $('#select-category').append(`<option>${cat._id}</option>`)
+                }
+            }
+        });
+
+        let tags_li = []
+        $.ajax({
+            type: "Get",
+            url: "{{ url_for('api.tags') }}",
+            success: function (resp) {
+                console.log(resp);
+                for (let tag of resp.tags) {
+                    tags_li.push(tag.name)
+                }
+            }
+        });
+        console.log(tags_li)
+        $("#tag-input").autocomplete({
+            source: tags_li,
+            autoFocus: true,
+            delay: 500,
+            minLength: 0
+        });
+
+
+    </script>
 {% endblock %}
 
 
