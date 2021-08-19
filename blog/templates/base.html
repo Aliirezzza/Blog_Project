@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    {% block style %}{% endblock %}
+    {% block script %}{% endblock %}
+
+
+</head>
+
+<body>
+
+<div id="FirstLine">
+    <div class="row">
+        {% if g.user %}
+            <div class="col-md-4 col-sm-4 col-xs-4">
+
+                <p style="display: inline-block"> خوش آمدید
+                    {{ g.user["username"] }}
+                </p>
+
+                <a href="{{ url_for('user.create_post') }}" style="text-decoration: none">
+                    <button type="button" class="btn btn-secondary">ساخت پست</button>
+                </a>
+
+                <a href="{{ url_for("auth.logout") }}">
+                    <button type="button" class="btn btn-light">خروج</button>
+                </a>
+
+            </div>
+
+
+        {% else %}
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <a href="{{ url_for("auth.signup") }}" style="text-decoration: none">
+                    <button type="button" class="btn btn-secondary">ثبتنام</button>
+                </a>
+                <a href="{{ url_for("auth.login") }}">
+                    <button type="button" class="btn btn-light">ورود</button>
+                </a>
+            </div>
+
+        {% endif %}
+
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <div class="input-group">
+                <input type="search" class="form-control rounded" placeholder="جستجو" aria-label="Search"
+                       aria-describedby="search-addon"/>
+                <button type="button" class="btn btn-outline-primary">جستجو</button>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-4" style="text-align: right;">
+            <strong>وبلاگ</strong>
+        </div>
+
+    </div>
+</div>
+
+<ul>
+    <div class="container" id="NavbarUl">
+        <li><a href="{{ url_for("blog.index") }}">خانه</a></li>
+    </div>
+</ul>
+<br><br>
+
+
+<div class="row">
+    <div class="col-10">
+    </div>
+</div>
+<div class="col-3" style="float: right">
+    <div class="card side mt-3" id="categories-card">
+        <div class="card-header side-header">
+            <p class="card-text row flex-row-reverse" style="font-size: 18px; margin-right: 2px">دسته‌بندی مطالب</p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <nav id="column_left">
+                        <ul class="nav nav-list list-group" id="main-ul">
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card side mt-3">
+        <div class="card-header side-header">
+            <div class="card-title row flex-row-reverse">
+                <p class="mr-3">برچسب ها</p>
+            </div>
+        </div>
+        <div class="card-body" id="body-tags">
+
+        </div>
+    </div>
+</div>
+
+{% block body %}{% endblock %}
+<footer class="text-center text-lg-start bg-light text-muted">
+
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+
+        <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+
+
+    </section>
+
+
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+
+            <div class="row mt-3">
+
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        وبلاگ
+                    </h6>
+                    <p>این وبسایت توسط کاروندان گروه 2 مکتب 53 ساخته شده است</p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        دسته بندی های محبوب
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">دسته بندی 1</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">دسته بندی 2</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">دسته بندی 3</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">دسته بندی 4</a>
+                    </p>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        لینک های مرتبط
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">خرید</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">تنظیمات</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">ترتیب</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">راهنمایی</a>
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Developer's
+                    </h6>
+                    <p><i class="fas fa-home me-3"></i> Mahdi Sijani</p>
+                    <p>
+                        Mobin Aghaei
+                    </p>
+                    <p>Sajjad Zooghi</p>
+                    <p>Mostafa Nazari</p>
+                    <p>Alireza Zaree</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="#">Blog.com</a>
+    </div>
+</footer>
+<script>
+
+        $.ajax({
+            type: "Get",
+            url: "{{ url_for('api.tags') }}",
+            success: function (resp) {
+                console.log(resp);
+                for (let tag of resp.tags) {
+                    $('#body-tags').append(`<button id="button-tag"><a href="tag-posts/${tag.name}">${tag.name}</a></button>`)
+                }
+            }
+        });
+
+        $.ajax({
+            type: "Get",
+            url: "{{ url_for('api.categories') }}",
+            success: function (resp) {
+                let level1 = [];
+                let level2 = [];
+                let level3 = [];
+                let level4 = [];
+
+                for (let category of resp.categories) {
+                    if (category.parent.length == 1) {
+                        level1.push(category.parent[1]);
+                        $('#main-ul').append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
+                    } else if (category.parent.length == 2) {
+                        if (level2.includes(category.parent[1])) {
+                            $(`#${category.parent[1]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
+                        } else {
+                            level2.push(category.parent[1]);
+                            $(`#id-${category.parent[1]}`).attr('class', 'parent')
+                            $(`#id-${category.parent[1]}`).after(`<p id="coll-${category.parent[1]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[1]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
+                            $(`#coll-${category.parent[1]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[1]}">
+                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
+                                </ul>`)
+                        }
+
+                    } else if (category.parent.length == 3) {
+                        if (level3.includes(category.parent[2])) {
+                            $(`#${category.parent[2]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
+                        } else {
+                            level3.push(category.parent[2]);
+                            $(`#id-${category.parent[2]}`).attr('class', 'parent')
+                            $(`#id-${category.parent[2]}`).after(`<p id="coll-${category.parent[2]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[2]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
+                            $(`#coll-${category.parent[2]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[2]}">
+                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
+                                </ul>`)
+                        }
+
+                    } else if (category.parent.length == 4) {
+                        if (level4.includes(category.parent[3])) {
+                            $(`#${category.parent[3]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
+                        } else {
+                            level4.push(category.parent[3]);
+                            $(`#id-${category.parent[3]}`).attr('class', 'parent')
+                            $(`#id-${category.parent[3]}`).after(`<p id="coll-${category.parent[3]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[3]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
+                            $(`#coll-${category.parent[3]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[3]}">
+                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
+                                </ul>`)
+                        }
+                    }
+                }
+            },
+        })
+    </script>
+{% block js %}
+{% endblock %}
+</body>
+</html>
