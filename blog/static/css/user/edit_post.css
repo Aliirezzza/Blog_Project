@@ -9,9 +9,9 @@
 .form-control:focus {
     color: #495057;
     background-color: #ababab;
-    border-color: #55057e;
+    border-color: #038782;
     outline: 0;
-    box-shadow: 0 0 0 0rem rgb(85, 5, 126)
+    box-shadow: 0 0 0 0rem rgb(3, 135, 130)
 }
 
 .btn-secondary:focus {
@@ -77,7 +77,7 @@ body {
     font-size: 14px;
     line-height: 1.8;
     font-weight: normal;
-    background: #fbd1b7;
+    background: #ffffff;
     color: gray;
 }
 body {
@@ -107,17 +107,17 @@ html {
 }
 .btn{
   color: aliceblue;
-  background-color: darkmagenta ;
+  background-color: #038782;
 
 }
 .p{
   color: aliceblue;
 }
 .modal-body, .x{
-  background-color: #fbd1b7;
+  background-color: #ffffff;
 }
 .pt-3,.pt-5{
-    background: #fbd1b7;
+    background: #ffffff;
 
 }
 
