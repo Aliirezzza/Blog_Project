@@ -38,14 +38,12 @@ def tags():
     resp = {'tags': tags}
     return resp
 
-@bp.route("post-delete/<post_id>", methods=("POST",))
+@bp.route("post-delete/<post_id>")
 @login_required
 def post_delete(post_id):
     db = get_db()
-    dsrpost = db.post.find({"_id": ObjectId(post_id)})
-    if request.method == "POST":
-        db.post.remove(dsrpost)
-    return redirect(url_for("user.posts_list"), post=dsrpost)
+    db.post.remove({"_id": ObjectId(post_id)})
+    return redirect(url_for("user.posts_list"))
 
 @bp.route("user-profile/<user_id>/", methods=("POST",))
 @login_required
@@ -53,7 +51,27 @@ def user_profile(user_id):
     db = get_db()
     render_template("user/profile.html", )
 
-@bp.route("/post-deactive/<post_id>/", methods=("POST",))
+@bp.route("/post-deactive/<post_id>/")
 @login_required
 def post_deactive(post_id):
     db = get_db()
+    db.post.update({
+        "_id": post_id
+        },{
+        '$set': {
+            "Active": False
+            }
+        })
+
+
+@bp.route("/post-active/<post_id>/")
+@login_required
+def post_active(post_id):
+    db = get_db()
+    db.post.update({
+        "_id": post_id
+        }, {
+        '$set': {
+            "Active": True
+            }
+        })
