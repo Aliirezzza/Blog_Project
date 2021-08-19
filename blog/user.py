@@ -14,13 +14,33 @@ from blog.db import get_db
 bp = Blueprint("user", __name__)
 
 
+@bp.route("/profile")
+@login_required
+def profile():
+    db = get_db()
+
+    return render_template("user/profile.html", title='Profile', )
+
+
+@bp.route("/posts-list/<string:user_id>")
+@login_required
+def posts_list(user_id):
+    db = get_db()
+    posts = db.post.find({"author_id": ObjectId(user_id)})
+    posts = [post for post in posts]
+
+
+
+    return render_template("user/post_list.html", posts=posts)
+
+
 @bp.route("/create", methods=("GET", "POST"))
 @login_required
 def create_post():
     if request.method == "POST":
         title = request.form.get('title')
         content = request.form.get('content')
-        image = request.form.get('image') #????
+        image = request.form.get('image')  # ????
         category = request.form.get('category')
         tag = request.form.get('tag')
         activition = request.form.get('activition')
@@ -43,8 +63,10 @@ def create_post():
             flash(error)
         else:
             db = get_db()
-            db.post.insert_one({"title": title, "content": content, "category": category, "tag": tag, "image": image,"activition":activition,
-                                "author_username": g.user["username"], "author_id": g.user["_id"], "author_image": g.user["image"]})
+            db.post.insert_one({"title": title, "content": content, "category": category, "tag": tag, "image": image,
+                                "activition": activition,
+                                "author_username": g.user["username"], "author_id": g.user["_id"],
+                                "author_image": g.user["image"]})
             return redirect(url_for("blog.index"))
 
     return render_template("user/create_post.html")
@@ -68,7 +90,7 @@ def edit_post(post_id):
             '_id': li[0]['_id']
         }, {
             '$set': {
-                "title": title, "content": content, "tag": tag, "activition":activition,
+                "title": title, "content": content, "tag": tag, "activition": activition,
             }
         }, upsert=False, multi=False)
         return redirect(url_for("blog.index"))
