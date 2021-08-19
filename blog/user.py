@@ -22,11 +22,11 @@ def profile():
     return render_template("user/profile.html", title='Profile', )
 
 
-@bp.route("/posts-list/<string:user_id>")
+@bp.route("/posts-list/")
 @login_required
-def posts_list(user_id):
+def posts_list():
     db = get_db()
-    posts = db.post.find({"author_id": ObjectId(user_id)})
+    posts = db.post.find({"author_id": ObjectId(g.user["_id"])})
     posts = [post for post in posts]
 
 
