@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block style %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/user/edit_post.css') }}">
     {#    <link rel="stylesheet" href="../../static/css/user/edit_post.css'">#}
 {% endblock %}
 
 {% block script %}
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ url_for('static', filename='js/create_post/create_post.js') }}"></script>
     {#    <script type='text/javascript' src="../../static/js/create_post/create_post.js"></script>#}
 {% endblock %}
@@ -54,7 +57,7 @@
                             <div class="form-group">
                                 <div class="row d-flex align-items-center justify-content-center ">
                                     <div class="col-10">
-                                        <input type="text" name="tag" class="form-control"
+                                        <input id="tag-input" type="text" name="tag" class="form-control"
                                                value="{{ post.tag }}" required>
                                     </div>
                                     <div class="col-2">
@@ -100,6 +103,32 @@
 
     </div>
 
+{% endblock %}
+{% block js %}
+    <script>
+
+
+        let tags_li = []
+        $.ajax({
+            type: "Get",
+            url: "{{ url_for('api.tags') }}",
+            success: function (resp) {
+                console.log(resp);
+                for (let tag of resp.tags) {
+                    tags_li.push(tag.name)
+                }
+            }
+        });
+        console.log(tags_li)
+        $("#tag-input").autocomplete({
+            source: tags_li,
+            autoFocus: true,
+            delay: 500,
+            minLength: 0
+        });
+
+
+    </script>
 {% endblock %}
 
 

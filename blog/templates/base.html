@@ -70,7 +70,7 @@
 
 <ul>
     <div class="container" id="NavbarUl">
-        <li><a href="#home">خانه</a></li>
+        <li><a href="{{ url_for("blog.index") }}">خانه</a></li>
     </div>
 </ul>
 <br><br>
@@ -193,8 +193,7 @@
         <a class="text-reset fw-bold" href="#">Blog.com</a>
     </div>
 </footer>
-{% block js %}
-    <script>
+<script>
 
         $.ajax({
             type: "Get",
@@ -202,7 +201,7 @@
             success: function (resp) {
                 console.log(resp);
                 for (let tag of resp.tags) {
-                    $('#body-tags').append(`<button id="button-tag" href="#">${tag.name}</button>`)
+                    $('#body-tags').append(`<button id="button-tag"><a href="tag-posts/${tag.name}">${tag.name}</a></button>`)
                 }
             }
         });
@@ -214,43 +213,45 @@
                 let level1 = [];
                 let level2 = [];
                 let level3 = [];
+                let level4 = [];
 
                 for (let category of resp.categories) {
                     if (category.parent.length == 1) {
-                        if (level1.includes(category.parent[0])) {
-                            $(`#${category.parent[0]}`).append(`<li><a id="id-${category._id}">${category._id}</a></li>`)
-                        } else if (category.parent[0] == 0) {
-                            $('#main-ul').append(`<li><a id="id-${category._id}">${category._id}</a></li>`)
-                        } else {
-                            level1.push(category.parent[0]);
-                            $(`#id-${category.parent[0]}`).attr({'class':'accordion-heading', 'data-toggle': 'collapse', 'data-target': `#${category.parent[0]}`});
-                            $(`#id-${category.parent[0]}`).prepend(`<i class="fa fa-fw fa-arrow-down"></i>`)
-                            $(`#id-${category.parent[0]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[0]}">
-                                    <li><a id="id-${category._id}">${category._id}</a></li>
-                                </ul>`)
-                        }
-
+                        level1.push(category.parent[1]);
+                        $('#main-ul').append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
                     } else if (category.parent.length == 2) {
                         if (level2.includes(category.parent[1])) {
-                            $(`#${category.parent[1]}`).append(`<li><a id="id-${category._id}">${category._id}</a></li>`)
+                            $(`#${category.parent[1]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
                         } else {
-                            level2.push(category.parent[1])
-                            $(`#id-${category.parent[1]}`).attr({'class':'accordion-heading', 'data-toggle': 'collapse', 'data-target': `#${category.parent[1]}`});
-                            $(`#id-${category.parent[1]}`).prepend(`<i class="fa fa-fw fa-arrow-down"></i>`)
-                            $(`#id-${category.parent[1]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[1]}">
-                                    <li><a id="id-${category._id}">${category._id}</a></li>
+                            level2.push(category.parent[1]);
+                            $(`#id-${category.parent[1]}`).attr('class', 'parent')
+                            $(`#id-${category.parent[1]}`).after(`<p id="coll-${category.parent[1]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[1]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
+                            $(`#coll-${category.parent[1]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[1]}">
+                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
                                 </ul>`)
                         }
 
                     } else if (category.parent.length == 3) {
                         if (level3.includes(category.parent[2])) {
-                            $(`#${category.parent[2]}`).append(`<li><a id="id-${category._id}">${category._id}</a></li>`)
+                            $(`#${category.parent[2]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
                         } else {
-                            level3.push(category.parent[2])
-                            $(`#id-${category.parent[2]}`).attr({'class':'accordion-heading', 'data-toggle': 'collapse', 'data-target': `#${category.parent[2]}`});
-                            $(`#id-${category.parent[2]}`).prepend(`<i class="fa fa-fw fa-arrow-down"></i>`)
-                            $(`#id-${category.parent[2]}`).after(`<ul class="nav nav-list collapse list-group" id="${category.parent[2]}">
-                                    <li><a id="id-${category._id}">${category._id}</a></li>
+                            level3.push(category.parent[2]);
+                            $(`#id-${category.parent[2]}`).attr('class', 'parent')
+                            $(`#id-${category.parent[2]}`).after(`<p id="coll-${category.parent[2]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[2]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
+                            $(`#coll-${category.parent[2]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[2]}">
+                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
+                                </ul>`)
+                        }
+
+                    } else if (category.parent.length == 4) {
+                        if (level4.includes(category.parent[3])) {
+                            $(`#${category.parent[3]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
+                        } else {
+                            level4.push(category.parent[3]);
+                            $(`#id-${category.parent[3]}`).attr('class', 'parent')
+                            $(`#id-${category.parent[3]}`).after(`<p id="coll-${category.parent[3]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[3]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
+                            $(`#coll-${category.parent[3]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[3]}">
+                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
                                 </ul>`)
                         }
                     }
@@ -258,6 +259,7 @@
             },
         })
     </script>
+{% block js %}
 {% endblock %}
 </body>
 </html>
