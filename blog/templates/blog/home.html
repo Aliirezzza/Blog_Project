@@ -11,7 +11,10 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
+
                 {% for post in posts %}
+
+                    {% set CONTENT = post.content|string() %}
                     <div class="card" style="margin-bottom: 20px">
                         <div class="card-header">
                             <div class="row">
@@ -59,8 +62,7 @@
 
 
                                 </div>
-                                <p class="card-text" style="float:right;">With supporting text below as a natural
-                                    lead-in to additional content.
+                                <p class="card-text" style="float:right;">{{ CONTENT[:70] }}
                                 </p>
                                 <img src="{{ url_for('static', filename='media/') }}{{ post.image }}" class="img-fluid"
                                      alt="Responsive image" style="object-fit: cover; ;width: 1000px; height:500px;">
@@ -95,8 +97,9 @@
 
 
 
-                                            <span class="badge bg-secondary" style="padding: 1%;"><a href="{{ url_for("blog.tag", tag_id="") }}{{ tag.id }} }}"
-                                                                                                     style="text-decoration: none;color:#ffffff">{{ tag.name }}<</a></span>
+                                            <span class="badge bg-secondary" style="padding: 1%;"><a
+                                                    href="{{ url_for("blog.tag", tag_id="") }}{{ tag.id }} }}"
+                                                    style="text-decoration: none;color:#ffffff">{{ tag.name }}<</a></span>
                                         {% endfor %}
                                     </div>
                                 </div>
