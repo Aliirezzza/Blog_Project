@@ -14,12 +14,12 @@
                         <div class="card-header row">
 
                             <div class="col-10 ">
-                                <h5 class="card-title"style="margin: 20px">
+                                <h5 class="card-title" style="margin: 20px">
                                     {{ post.author_username }}
                                 </h5>
                             </div>
                             <div class="col-2">
-                                <img src="{{ url_for('static', filename='media/'+post.image) }}"
+                                <img src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
                                      class="img-fluid "
                                      alt="Responsive image" style="border-radius: 100%; float:right">
                             </div>
@@ -53,7 +53,7 @@
                     <div class="card mt-20 ">
                         <div class="rtl">
                             <div class="d-flex justify-content-center ">
-                                <img src="{{ url_for('static', filename='media/'+post.image) }}" class="img-fluid "
+                                <img src="{{ url_for('static', filename='media/') }}{{ post.image }}" class="img-fluid "
                                      alt="Responsive image" style="width: 100%;">
                             </div>
                             <p class="card-body rtl ">

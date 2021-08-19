@@ -23,7 +23,7 @@ def index():
     return render_template('blog/home.html', posts=posts)
 
 
-@bp.route("/posts/<string:post_id>")
+@bp.route("/post/<string:post_id>")
 def post_detail(post_id):
     db = get_db()
     post = db.post.find_one({"_id": ObjectId(post_id)})
@@ -38,8 +38,6 @@ def category(category_id):
     db = get_db()
     posts = db.post.find({"category_id": ObjectId(category_id)})
     posts = [post for post in posts]
-    # categories = db.category.find()
-    # categories = [i for i in categories]
     return render_template("blog/category.html",posts=posts)
 
 @bp.route("/tag-posts/<string:tag_id>/")
@@ -48,7 +46,5 @@ def tag(tag_id):
     db = get_db()
     posts = db.post.find({"tag_id":ObjectId(tag_id)})
     posts = [post for post in posts]
-    # tags = db.tag.find()
-    # tags = [tag for tag in tags]
     return render_template("blog/tag.html", posts=posts)
 

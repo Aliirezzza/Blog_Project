@@ -23,7 +23,7 @@
                                         <div class="col-md-12 col-sm-12 col col-xs-12">
 
                                             <h4><a href="#" class="text-dark" style="float: right; margin-top:5%">
-                                                {{ g.user["first_name"] }}</a></h4>
+                                                {{ post.author_name }}</a></h4>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" style="color:#000000;text-decoration: none;">
+                        <a href="{{ url_for("blog.post_detail", post_id="") }}{{ post._id }}" style="color:#000000;text-decoration: none;">
                             <div class="card-body">
                                 <div class="row">
 
