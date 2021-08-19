@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block style %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user/edit_post.css') }}">
+    {#    <link rel="stylesheet" href="../../static/css/user/edit_post.css'">#}
+{% endblock %}
+
+{% block script %}
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ url_for('static', filename='js/create_post/create_post.js') }}"></script>
+    {#    <script type='text/javascript' src="../../static/js/create_post/create_post.js"></script>#}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container mb-100">
+        <section class="ftco-section">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-10">
+                    <div class="login-wrap py-5 mt-100 mb-100">
+                        <div class="img d-flex align-items-center justify-content-center"></div>
+                        <h3 class="text-center mb-0 p">ویرایش اطلاعات</h3>
+                        <br>
+                        <form id="edit_post_form" action="{{ url_for('user.edit_post', post_id=post._id ) }}" method="post"
+                              enctype="multipart/form-data" class="login-form mt-4">
+                            <!-- Title -->
+                            <div class="form-group">
+                                <div class="row d-flex align-items-center justify-content-center ">
+                                    <div class="col-10">
+                                        <input type="text" name="title" class="form-control"
+                                               value="{{ post.title }}" required>
+                                    </div>
+                                    <div class="col-2">
+                                        <label class="" style="color: white">عنوان</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- content -->
+                            <div class="form-group">
+                                <div class="row d-flex align-items-center justify-content-center ">
+                                    <div class="col-10">
+                                        <textarea type="text" name="content" class="rtl form-control"
+                                                  rows="8" id="content"
+                                                  required>{{ post.content }}</textarea>
+                                    </div>
+                                    <div class="col-2">
+                                        <label class="" style="color: white">بدنه</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- tags -->
+                            <div class="form-group">
+                                <div class="row d-flex align-items-center justify-content-center ">
+                                    <div class="col-10">
+                                        <input id="tag-input" type="text" name="tag" class="form-control"
+                                               value="{{ post.tag }}" required>
+                                    </div>
+                                    <div class="col-2">
+                                        <label class="" style="color: white">تگ ها</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <!-- activition -->
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-center ">
+                                    <label class="col-12 d-flex justify-content-center" style="color: white">آیا قصد
+                                        دارید که بست جدیدتان
+                                        را منتشر کنید؟</label>
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-5">
+                                            <label class="radio-container " style="color: white">بله
+                                                <input type="radio"{% if post.activition == 'yes' %} checked="checked" {% endif %}name="activition" ng-model="yes" value="yes">
+                                                <span class="checkmark" ></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-5">
+                                            <label class="radio-container " style="color: white">نه
+                                                <input type="radio"{% if post.activition == 'no' %} checked="checked" {% endif %} name="activition" ng-model="no" value="no">
+                                                <span class="checkmark" ></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SUBMIT -->
+                            <div class="form-group row d-flex justify-content-center">
+                                <button id="SUBMIT" type="submit" name="submit"
+                                        class="col-3 btn btn-info form-control rounded submit px-3 ">
+                                    ثبت اطلاعات
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script>
+
+
+        let tags_li = []
+        $.ajax({
+            type: "Get",
+            url: "{{ url_for('api.tags') }}",
+            success: function (resp) {
+                console.log(resp);
+                for (let tag of resp.tags) {
+                    tags_li.push(tag.name)
+                }
+            }
+        });
+        console.log(tags_li)
+        $("#tag-input").autocomplete({
+            source: tags_li,
+            autoFocus: true,
+            delay: 500,
+            minLength: 0
+        });
+
+
+    </script>
+{% endblock %}
+
+

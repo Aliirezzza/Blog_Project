@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user/profile.css') }}">
+    {#    <link rel="stylesheet" href="../../static/css/user/profile.css'">#}
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='js/user/profile.js') }}"></script>
+    {#    <script type='text/javascript' src="../../static/js/user/profile.js"></script>#}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="container m-auto" dir="rtl" style="margin-top: 50px;background-color: #0d060e;height: 1000px;float: left">
+
+            <img id="profile_image" src="{{ url_for('static', filename='media/' + g.user["image"]) }} ">
+                 <br>
+        <div id="info">
+        <h4 id="name">{{ g.user["first_name"] }} {{ g.user["last_name"] }}</h4>
+            <h3 id="username">{{ g.user["username"] }}</h3>
+            <h3 id="email">{{ g.user["email"] }}</h3>
+        </div>
+
+    </div>
+
+</div>
+    <form action="{{ url_for('user.posts_list', user_id=g.user["_id"] )}}">
+         <button type="submit" style="float: right">نوشته های شما</button>
+    </form>
+</div>
+
+
+
+{% endblock %}
