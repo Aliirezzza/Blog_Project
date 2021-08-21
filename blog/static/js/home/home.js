@@ -19,3 +19,80 @@ $(function() {
         input.val(input.val() - 1);
     });
 });
+
+
+
+//  ajax icon like and dislike
+$(document).ready(function () {
+    var $LikeCounter = $('#like_counter_post')
+    var $DislkeCounter = $('#dislike_counter_post')
+    var $LikeLink = $('#post_like')
+    var $DisLikelink = $('#post_dislike')
+    var $svgLike = $('#svg-like')
+    var $svgDislike = $('#svg-dislike')
+
+// icon like
+    $LikeLink.click(function (e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                like: $('#user_pk').attr('value'),
+            },
+            success: function (resp) {
+                if (resp['status'] == 1) {
+                    $LikeCounter.html(parseInt($LikeCounter.html()) + 1);
+                    $svgLike.css('color', 'red')
+                } else if (resp['status'] == 2) {
+                    $LikeCounter.html(parseInt($LikeCounter.html()) + 1);
+                    $svgLike.css('color', 'red')
+                    $DislkeCounter.html(parseInt($DislkeCounter.html()) - 1);
+                    $svgDislike.css('color', '#99abb4')
+                } else if (resp['status'] == 3) {
+                    $LikeCounter.html(parseInt($LikeCounter.html()) - 1)
+                    $svgLike.css('color', '#99abb4')
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr)
+                $('#alert .modal-body').html('we have server error')
+                $('#alert').modal('show')
+            }
+        })
+    })
+// icon dislike
+    $DisLikelink.click(function (e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                dislike: $('#user_pk').attr('value'),
+            },
+            success: function (resp) {
+                if (resp['status'] == 1) {
+                    $DislkeCounter.html(parseInt($DislkeCounter.html()) + 1);
+                    $svgDislike.css('color', 'red')
+                } else if (resp['status'] == 2) {
+                    $DislkeCounter.html(parseInt($DislkeCounter.html()) + 1);
+                    $svgDislike.css('color', 'red')
+                    $LikeCounter.html(parseInt($LikeCounter.html()) - 1);
+                    $svgLike.css('color', '#99abb4')
+                } else if (resp['status'] == 3) {
+                    $DislkeCounter.html(parseInt($DislkeCounter.html()) - 1)
+                    $svgDislike.css('color', '#99abb4')
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr)
+                $('#alert .modal-body').html('we have server error')
+                $('#alert').modal('show')
+            }
+        })
+    })
+})
+
+
