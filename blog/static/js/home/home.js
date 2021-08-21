@@ -20,7 +20,6 @@ $(function() {
     });
 });
 
-
 //  ajax icon like and dislike
 $(document).ready(function () {
     var $LikeCounter = $('#like_counter_post')
@@ -93,3 +92,5 @@ $(document).ready(function () {
         })
     })
 })
+
+
