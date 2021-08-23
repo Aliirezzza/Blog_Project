@@ -78,9 +78,9 @@ def post_active(post_id):
 @login_required
 def like(post_id):
     db = get_db()
-    posts = db.post.find({"_id": ObjectId(post_id)})
-    li = [p for p in posts]
-    post = li[0]
+    posts = list(db.post.find({"_id": ObjectId(post_id)}))
+    # li = [p for p in posts]
+    post = posts[0]
 
     like = post['like']
     dislike = post['dislike']
