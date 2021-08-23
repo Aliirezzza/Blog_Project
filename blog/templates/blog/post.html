@@ -1,85 +1,80 @@
 {% extends 'base.html' %}
 {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/blog/post.css') }}">
-{#
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blog/post.css') }}">
+    {#
 <link rel="stylesheet" href="../../static/css/create_post/create_post.css">#}
 {% endblock %}
 
 {% block body %}
 
-<div oncontextmenu='return false' class='snippet-body mb-100 '>
-    <div class="container mr-40 ml-40">
-        <div class="row  mb-100 mt-100">
-            <div class="col-12">
-                <div class="card mt-40 " style="height: 20vm">
-                    <div class="card-header row">
+    <div oncontextmenu='return false' class='snippet-body mb-100 '>
+        <div class="container mr-40 ml-40">
+            <div class="row  mb-100 mt-100">
+                <div class="col-12">
 
-                        <div class="col-10 ">
-                            <h5 class="card-title" style="margin: 20px">
-                                {{ post.author_username }}
-                            </h5>
-                        </div>
-                        <div class="col-2">
-                            <img src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
-                                class="img-fluid " alt="Responsive image" style="border-radius: 100%; float:right">
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="card mt-40 ">
-                    <div class="card-header text-center ">
+                    <div class="card-header">
                         <div class="row">
-                            <div class="col" style="padding-right: 0%;">
+                            <div class="col-md-10 col-sm-10 col col-xs-10" style="padding-right: 0%;">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col col-xs-12">
-                                        <h4 class="rtl">
-                                            {{ post.title }}
-                                        </h4>
+
+                                        <h4><a href="#" class="text-dark" style="float: right; margin-top:5%">
+                                            {{ post.author_name }}</a></h4>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col col-xs-12">
-                                        <p class="text-muted">
-                                            {{ post.create_date }}
-                                        </p>
+
+                                        <p class="text-muted" style="float: right;">
+                                            {{ post.create_date }}</p>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-2 col-sm-2 col col-xs-2" style="padding-left: 0%;">
+
+
+                                <a href="#">
+                                    <img src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
+                                         alt="photo not found"
+                                         style="width: 100px;height: 100px; border-radius: 100%; float:right;object-fit: cover">
+                                </a>
+
+
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card mt-20 ">
-                    <div class="rtl">
-                        <div class="d-flex justify-content-center ">
-                            <img src="{{ url_for('static', filename='media/') }}{{ post.image }}" class="img-fluid "
-                                alt="Responsive image" style="width: 100%;">
+
+                    <div class="card mt-20 ">
+                        <div class="rtl">
+                            <div class="d-flex justify-content-center ">
+                                <img src="{{ url_for('static', filename='media/') }}{{ post.image }}" class="img-fluid "
+                                     alt="Responsive image" style="width: 100%;">
+                            </div>
+                            <p class="card-body text-right ">
+                                {{ post.content }}
+                            </p>
                         </div>
-                        <p class="card-body text-right ">
-                            {{ post.content }}
-                        </p>
                     </div>
-                </div>
 
-                <div class="card mt-20 mb-40 ">
-                    <div class="card-footer p">
+                    <div class="card mt-20 mb-40 ">
+                        <div class="card-footer p">
 
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                {# {% for tagg in tag %}#}
-                                <span class="badge bg-secondary" style="padding: 1%;">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    {# {% for tagg in tag %}#}
+                                    <span class="badge bg-secondary" style="padding: 1%;">
                                     <a href="#" style="text-decoration: none;color:#ffffff">{{ post.tag }}</a>
                                 </span>
-                                {# {% endfor %}#}
+                                    {# {% endfor %}#}
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
