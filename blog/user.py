@@ -1,3 +1,4 @@
+import  pymongo
 from flask import Blueprint
 from flask import g
 from flask import flash
@@ -67,6 +68,7 @@ def create_post():
                                 "activition": activition,
                                 "author_username": g.user["username"], "author_id": g.user["_id"],
                                 "author_image": g.user["image"]})
+            db.post.createIndex({title: 'text', content: 'text', g.user["username"]: 'text'})
             return redirect(url_for("blog.index"))
 
     return render_template("user/create_post.html")

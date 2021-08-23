@@ -1,4 +1,4 @@
-import pymongo
+from pymongo import TEXT
 from flask import Blueprint
 from flask import g
 from flask import flash
@@ -59,8 +59,9 @@ def post_deactive(post_id):
         "_id": post_id
         },{
         '$set': {
-            "Active": False
-            }
+            "activition": "no"
+
+        }
         })
 
 
@@ -72,6 +73,92 @@ def post_active(post_id):
         "_id": post_id
         }, {
         '$set': {
-            "Active": True
+            "activition": "yes"
             }
         })
+
+# like api
+@bp.route('/like/<post_id>', methods=("POST",))
+@login_required
+def like(post_id):
+    db = get_db()
+    posts = db.post.find({"_id": ObjectId(post_id)})
+    li = [p for p in posts]
+    post = li[0]
+
+    like = post['like']
+    dislike = post['dislike']
+    if request.method == 'POST':
+        if g.user["username"] not in like:        #  user not already like post this state for pervent one user like twice
+            if g.user["username"] not in dislike: #  user not already dislike post  this state for pervent one user like and dislike concurrent
+                like.append(g.user["username"])
+                db.post.update(
+                    {'_id': post['_id']},
+                    {'$set': {"like": like,}},
+                    upsert=False, multi=False)
+                return {"status": 1}
+            else:
+                dislike.remove(g.user["username"])
+                like.append(g.user["username"])
+                db.post.update(
+                    {'_id': post['_id']},
+                    {'$set': {"like": like, "dislike": dislike, }},
+                    upsert=False, multi=False)
+                return {"status": 2}
+        else:
+            like.remove(g.user["username"])
+            db.post.update(
+                {'_id': post['_id']},
+                {'$set': {"like": like, }},
+                upsert=False, multi=False)
+            return {"status": 3}
+
+
+#dislike api
+@bp.route('/dislike/<post_id>', methods=("POST",))
+@login_required
+def dislike(post_id):
+    db = get_db()
+    posts = db.post.find({"_id": ObjectId(post_id)})
+    li = [p for p in posts]
+    post = li[0]
+
+    like = post['like']
+    dislike = post['dislike']
+    if request.method == 'POST':
+        if g.user["username"] not in dislike:     #  user not already dislike post this state for pervent one user like twice
+            if g.user["username"] not in like:    #  user not already like post  this state for pervent one user like and dislike concurrent
+                dislike.append(g.user["username"])
+                db.post.update(
+                    {'_id': post['_id']},
+                    {'$set': {"dislike": dislike, }},
+                    upsert=False, multi=False)
+                return {"status": 1}
+            else:
+                like.remove(g.user["username"])
+                dislike.append(g.user["username"])
+                db.post.update(
+                    {'_id': post['_id']},
+                    {'$set': {"like": like, "dislike": dislike, }},
+                    upsert=False, multi=False)
+                return {"status": 2}
+        else:
+            dislike.remove(g.user["username"])
+            db.post.update(
+                {'_id': post['_id']},
+                {'$set': {"dislike": dislike, }},
+                upsert=False, multi=False)
+            return {"status": 3}
+
+
+@bp.route('/search/', methods=['GET'])
+def search():
+    db = get_db()
+    search_text = request.form.get('search_text')
+    posts = db.post.find({'$text': {'$search': f"{search_text}"}})
+    searched_posts = [post for post in posts]
+
+    return render_template('base.html', searched_posts=searched_posts)
+
+
+
