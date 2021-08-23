@@ -40,10 +40,14 @@ def create_post():
         content = request.form.get('content')
         category = request.form.get('category')
         tags = request.form.getlist('tags')
+        print(tags)
         db = get_db()
         mytags = list(db.tag.find())
+        mytags = [mytag['name'] for mytag in mytags]
+        print(mytags)
         for tag in tags:
             if tag not in mytags:
+                print(tag)
                 db.tag.insert_one(
                     {"name": tag})
 
