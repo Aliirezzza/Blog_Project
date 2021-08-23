@@ -21,8 +21,8 @@
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 col col-xs-12">
 
-                                            <h4><a href="#" class="text-dark" style="float: right; margin-top:5%">
-                                                {{ post.author_name }}</a></h4>
+                                            <h4><p class="text-dark" style="float: right; margin-top:5%">
+                                                {{ post.author_name }}</p></h4>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ url_for("blog.post_detail", post_id="") }}{{ post._id }}"
+                        <a href="{{ url_for("blog.post_detail", post_id=post._id) }}"
                            style="color:#000000;text-decoration: none;">
                             <div class="card-body">
                                 <div class="row">
@@ -73,7 +73,7 @@
                                 <div class="">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         {% if not g.user %}
- {#                                    useer not login or register so  can't like post  #}
+                                            {#                                    useer not login or register so  can't like post  #}
                                             <span class="action-icons">
 {#                                            icon like  (disable)  #}
                                             <div class="col-2">
@@ -93,24 +93,31 @@
                                             </div>
                                             </span>
                                         {% else %}
- {#                                   useer login so has username then can like post  #}
+                                            {#                                   useer login so has username then can like post  #}
                                             <span class="action-icons row">
 {#                                            icon like  #}
                                             <div class="col-2">
                                                 <a id="post_like"
-                                                   href="{{ url_for("api.like", post_id="") }}{{ post._id }}" data-abc="true">
-                                                    <i id="svg-like" class="fa fa-thumbs-up fa-2x"{% if g.user["username"] in post.like %}  style="color: red;"  {% endif %}></i>
+                                                   href="{{ url_for("api.like", post_id=post._id) }}" data-abc="true">
+                                                    <i id="svg-like" class="fa fa-thumbs-up fa-2x"
+                                                            {% if g.user["username"] in post.like %}
+                                                       style="color: red;"  {% endif %}></i>
 {#                                                    number of like #}
-                                                    <span class="m-2" id="like_counter_post">{{ post.like|count }}</span>
+                                                    <span class="m-2"
+                                                          id="like_counter_post">{{ post.like|count }}</span>
                                                 </a>
                                             </div>
 {#                                            icon dislike  (enable)  #}
                                             <div class="col-2">
                                                 <a id="post_dislike"
-                                                   href="{{ url_for("api.dislike", post_id="") }}{{ post._id }}" data-abc="true" >
-                                                    <i id="svg-dislike" class="fa fa-thumbs-down fa-2x" {% if g.user["username"] in post.dislike %}  style="color: red;"  {% endif %}></i>
+                                                   href="{{ url_for("api.dislike", post_id=post._id) }}"
+                                                   data-abc="true">
+                                                    <i id="svg-dislike" class="fa fa-thumbs-down fa-2x"
+                                                            {% if g.user["username"] in post.dislike %}
+                                                       style="color: red;"  {% endif %}></i>
 {#                                                    number of dislike  (enable)   #}
-                                                    <span class="m-2" id="dislike_counter_post">{{ post.dislike|count }}</span>
+                                                    <span class="m-2"
+                                                          id="dislike_counter_post">{{ post.dislike|count }}</span>
                                                 </a>
                                             </div>
                                             </span>
@@ -120,14 +127,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 1%;">
-                                        {% for tag in tags %}
-
-
-
-                                            <span class="badge bg-secondary" style="padding: 1%;"><a
-                                                    href="{{ url_for("blog.tag", tag_name="") }}{{ tag.name }} }}"
-                                                    style="text-decoration: none;color:#ffffff">{{ tag.name }}<</a></span>
-                                        {% endfor %}
+                                        
+                                        <span class="badge bg-secondary" style="padding: 1%;"><a
+                                                href="{{ url_for("blog.tag", tag_name=post.tag) }}"
+                                                style="text-decoration: none;color:#ffffff">{{ post.tag }}</a></span>
                                     </div>
                                 </div>
                             </div>
