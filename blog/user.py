@@ -62,11 +62,13 @@ def create_post():
         if error is not None:
             flash(error)
         else:
+            like,dislike = [],[]
             db = get_db()
             db.post.insert_one({"title": title, "content": content, "category": category, "tag": tag, "image": image,
                                 "activition": activition,
                                 "author_username": g.user["username"], "author_id": g.user["_id"],
-                                "author_image": g.user["image"]})
+                                "author_image": g.user["image"],
+                                "like": like, "dislike":dislike,})
             return redirect(url_for("blog.index"))
 
     return render_template("user/create_post.html")
