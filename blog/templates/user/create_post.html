@@ -7,7 +7,6 @@
           rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/user/create_post.css') }}">
-    {#    <link rel="stylesheet" href="../../static/css/create_post/create_post.css">#}
 {% endblock %}
 
 {% block script %}
@@ -18,7 +17,8 @@
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
     <script src="{{ url_for('static', filename='js/user/create_post.js') }}"></script>
-    {#    <script type='text/javascript' src="../../static/js/user/create_post.js"></script>#}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -87,7 +87,12 @@
                                             </div>
                                             <!-- tags -->
                                             <div class="row pt-3 justify-content-center x">
-                                                <div class="col-md-6 x"><input id="tag-input" type="text" name="tag" class="form-control" placeholder="تگ ها" required></div>
+                                                <div class="col-md-6 x" id="tag-input">
+                                                    <select style="width: 15rem" id="select-tags" name="tags"
+                                                            multiple="multiple">
+                                                    </select>
+                                                    <label for="select-tags">برچسب پست</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div id="step-3">
@@ -145,30 +150,24 @@
             url: "{{ url_for('api.categories') }}",
             success: function (resp) {
                 for (let cat of resp.categories) {
-                    $('#select-category').append(`<option>${cat._id}</option>`)
+                    $('#select-category').append(`<option>${cat.id}</option>`)
                 }
             }
         });
 
-        let tags_li = []
         $.ajax({
             type: "Get",
             url: "{{ url_for('api.tags') }}",
             success: function (resp) {
-                console.log(resp);
-                for (let tag of resp.tags) {
-                    tags_li.push(tag.name)
+                for (let cat of resp.tags) {
+                    $('#select-tags').append(`<option>${cat.name}</option>`)
                 }
             }
         });
-        console.log(tags_li)
-        $("#tag-input").autocomplete({
-            source: tags_li,
-            autoFocus: true,
-            delay: 500,
-            minLength: 0
-        });
 
+        $('#select-tags').select2({
+            tags: true
+        });
 
     </script>
 {% endblock %}

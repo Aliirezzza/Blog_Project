@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
     {% block style %}{% endblock %}
     {% block script %}{% endblock %}
@@ -88,10 +90,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12">
-                    <nav id="column_left">
-                        <ul class="nav nav-list list-group" id="main-ul">
+                    <nav id="cat-column" style="direction:rtl">
 
-                        </ul>
                     </nav>
                 </div>
             </div>
@@ -179,9 +179,9 @@
                     <a href="https://github.com/mowbish">
                         Mobin Aghaei
                     </a>
-                    <a href="https://github.com/sjd1997">Sajjad Zooghi</a>
+                    <a href="https://github.com/sjd1997">Sajjad Zoghi</a>
                     <a href="https://github.com/Mostafa-N-E">Mostafa Nazari</a>
-                    <a href="https://github.com/Aliirezzza">Alireza Zaree</a>
+                    <a href="https://github.com/Aliirezzza">Alireza Zare</a>
                 </div>
             </div>
 
@@ -195,70 +195,46 @@
 </footer>
 <script>
 
-        $.ajax({
-            type: "Get",
-            url: "{{ url_for('api.tags') }}",
-            success: function (resp) {
-                console.log(resp);
-                for (let tag of resp.tags) {
-                    $('#body-tags').append(`<button id="button-tag"><a href="tag-posts/${tag.name}">${tag.name}</a></button>`)
-                }
+    $.ajax({
+        type: "Get",
+        url: "{{ url_for('api.tags') }}",
+        success: function (resp) {
+            console.log(resp);
+            for (let tag of resp.tags) {
+                $('#body-tags').append(`<button id="button-tag"><a href="http://127.0.0.1:5000/tag-posts/${tag.name}/">${tag.name}</a></button>`)
             }
-        });
+        }
+    });
 
-        $.ajax({
-            type: "Get",
-            url: "{{ url_for('api.categories') }}",
-            success: function (resp) {
-                let level1 = [];
-                let level2 = [];
-                let level3 = [];
-                let level4 = [];
 
-                for (let category of resp.categories) {
-                    if (category.parent.length == 1) {
-                        level1.push(category.parent[1]);
-                        $('#main-ul').append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
-                    } else if (category.parent.length == 2) {
-                        if (level2.includes(category.parent[1])) {
-                            $(`#${category.parent[1]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
-                        } else {
-                            level2.push(category.parent[1]);
-                            $(`#id-${category.parent[1]}`).attr('class', 'parent')
-                            $(`#id-${category.parent[1]}`).after(`<p id="coll-${category.parent[1]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[1]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
-                            $(`#coll-${category.parent[1]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[1]}">
-                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
-                                </ul>`)
-                        }
+    $.ajax({
+        type: "Get",
+        url: "{{ url_for('api.categories') }}",
+        success: function (resp) {
+            $('#cat-column').jstree({
+                'core': {
+                    "themes": {
+                        "variant": "large"
+                    },
+                    'data': resp.categories
+                },
+                "types": {
+                    "default": {
+                        "icon": false
+                    },
+                },
+                "plugins":
+                    ["wholerow", "types", "ui", "themes", "html_data"]
+            })
+        },
+    })
 
-                    } else if (category.parent.length == 3) {
-                        if (level3.includes(category.parent[2])) {
-                            $(`#${category.parent[2]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
-                        } else {
-                            level3.push(category.parent[2]);
-                            $(`#id-${category.parent[2]}`).attr('class', 'parent')
-                            $(`#id-${category.parent[2]}`).after(`<p id="coll-${category.parent[2]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[2]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
-                            $(`#coll-${category.parent[2]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[2]}">
-                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
-                                </ul>`)
-                        }
+    $('#cat-column').bind("select_node.jstree", function (e, data) {
+        let id = data.node.id;
+        window.location.href = `http://127.0.0.1:5000/category-posts/${id}/`;
+    });
 
-                    } else if (category.parent.length == 4) {
-                        if (level4.includes(category.parent[3])) {
-                            $(`#${category.parent[3]}`).append(`<li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>`)
-                        } else {
-                            level4.push(category.parent[3]);
-                            $(`#id-${category.parent[3]}`).attr('class', 'parent')
-                            $(`#id-${category.parent[3]}`).after(`<p id="coll-${category.parent[3]}" class="accordion-heading" data-toggle="collapse" data-target="#${category.parent[3]}"><i class="fa fa-fw fa-arrow-down"></i></p>`)
-                            $(`#coll-${category.parent[3]}`).after(`<ul class="nav nav-list collapse list-group mr-3" id="${category.parent[3]}">
-                                    <li><a href="category-posts/${category._id}" id="id-${category._id}">${category._id}</a></li>
-                                </ul>`)
-                        }
-                    }
-                }
-            },
-        })
-    </script>
+</script>
 {% block js %}
 {% endblock %}
 </body>
