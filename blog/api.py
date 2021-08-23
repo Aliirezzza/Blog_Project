@@ -19,13 +19,10 @@ bp = Blueprint("api", __name__, url_prefix="/api")
 @bp.route("/categories/")
 def categories():
     db = get_db()
-    categories = list(db.category.aggregate([
-        {'$unwind': '$parent'},
-        {'$group': {'_id': '$name', 'parent': {'$push': '$parent'}, 'len': {'$sum': 1}}},
-        {'$sort': {'len': 1}}
-    ]))
+    categories = list(db.category.find())
+    for category in categories:
+        category['_id'] = str(category['_id'])
     resp = {'categories': categories}
-    print(resp)
     return resp
 
 
