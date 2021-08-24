@@ -1,4 +1,4 @@
-from pymongo import TEXT
+import pymongo
 from flask import Blueprint
 from flask import g
 from flask import flash
@@ -19,13 +19,10 @@ bp = Blueprint("api", __name__, url_prefix="/api")
 @bp.route("/categories/")
 def categories():
     db = get_db()
-    categories = list(db.category.aggregate([
-        {'$unwind': '$parent'},
-        {'$group': {'_id': '$name', 'parent': {'$push': '$parent'}, 'len': {'$sum': 1}}},
-        {'$sort': {'len': 1}}
-    ]))
+    categories = list(db.category.find())
+    for category in categories:
+        category['_id'] = str(category['_id'])
     resp = {'categories': categories}
-    print(resp)
     return resp
 
 
@@ -59,9 +56,8 @@ def post_deactive(post_id):
         "_id": post_id
         },{
         '$set': {
-            "activition": "no"
-
-        }
+            "Active": False
+            }
         })
 
 
@@ -73,7 +69,7 @@ def post_active(post_id):
         "_id": post_id
         }, {
         '$set': {
-            "activition": "yes"
+            "Active": True
             }
         })
 
@@ -82,9 +78,9 @@ def post_active(post_id):
 @login_required
 def like(post_id):
     db = get_db()
-    posts = db.post.find({"_id": ObjectId(post_id)})
-    li = [p for p in posts]
-    post = li[0]
+    posts = list(db.post.find({"_id": ObjectId(post_id)}))
+    # li = [p for p in posts]
+    post = posts[0]
 
     like = post['like']
     dislike = post['dislike']
@@ -154,11 +150,10 @@ def dislike(post_id):
 @bp.route('/search/', methods=['GET'])
 def search():
     db = get_db()
-    search_text = request.form.get('search_text')
+    search_text = request.form.get("search_text")
     posts = db.post.find({'$text': {'$search': f"{search_text}"}})
     searched_posts = [post for post in posts]
 
-    return render_template('base.html', searched_posts=searched_posts)
-
+    return render_template('user/123.html', posts=posts, searched_posts=searched_posts, search_text=search_text)
 
 
