@@ -1,6 +1,4 @@
 
-
-
 .pb-5, .py-5 {
     padding-bottom: 3rem !important;
 }
@@ -8,28 +6,31 @@
 .pt-5, .py-5 {
     padding-top: 3rem !important;
 }
+
 .form-control:focus {
     color: #495057;
     background-color: #ababab;
     border-color: #038782;
     outline: 0;
-    box-shadow: 0 0 0 0rem rgb(3, 135, 130)
+    box-shadow: 0 0 0 0rem
 }
 
 .btn-secondary:focus {
-    box-shadow: 0 0 0 0rem rgba(108, 117, 125, .5)
+    box-shadow: 0 0 0 0rem
 }
 
 .close:focus {
-    box-shadow: 0 0 0 0rem rgba(108, 117, 125, .5)
+    box-shadow: 0 0 0 0rem
 }
 
 .mt-100 {
     margin-top: 100px
 }
+
 .mb-100 {
     margin-bottom: 100px
 }
+
 .mt-200 {
     margin-top: 200px
 }
@@ -38,26 +39,29 @@ input::-webkit-input-placeholder {
     text-align: right;
 }
 
-.input{
-direction: rtl;
+.input {
+    direction: rtl;
 }
 
 .login-wrap {
     position: relative;
-    background: #000232;
+    background: #546e7a;
     border-radius: 5px;
     padding-left: 30px;
     padding-right: 30px;
     /*-webkit-box-shadow: 0px 10px 34px -15px rgb(0 ,0 ,0, / 24%);*/
-    -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 10px 34px -15px
     /*box-shadow: 0px 10px 34px -15px rgb(0 0 0 / 24%);*/
 }
+
 .pb-5, .py-5 {
     padding-bottom: 3rem !important;
 }
+
 .pt-5, .py-5 {
     padding-top: 3rem !important;
 }
+
 *, *::before, *::after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -66,6 +70,7 @@ direction: rtl;
 div {
     display: block;
 }
+
 body {
     font-family: "Lato", Arial, sans-serif;
     font-size: 14px;
@@ -74,6 +79,7 @@ body {
     background: #ffffff;
     color: gray;
 }
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -91,26 +97,33 @@ html {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 *, *::before, *::after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 *, *::before, *::after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-.btn{
-  color: aliceblue;
-  background-color: #038782;
+
+#SUBMIT {
+    color: aliceblue;
+    background-color: #29434e;
+    border: none;
 
 }
-.p{
-  color: aliceblue;
+
+.p {
+    color: aliceblue;
 }
-.modal-body, .x{
-  background-color: #ffffff;
+
+.modal-body, .x {
+    background-color: #ffffff;
 }
-.pt-3,.pt-5{
+
+.pt-3, .pt-5 {
     background: #ffffff;
 
 }
