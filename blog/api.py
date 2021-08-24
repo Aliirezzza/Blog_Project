@@ -56,7 +56,7 @@ def post_deactive(post_id):
         "_id": post_id
         },{
         '$set': {
-            "Active": False
+            "activition": 'no'
             }
         })
 
@@ -69,7 +69,7 @@ def post_active(post_id):
         "_id": post_id
         }, {
         '$set': {
-            "Active": True
+            "activition": 'yes'
             }
         })
 
