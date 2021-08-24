@@ -47,13 +47,13 @@
            </div>
                                 <div style="float: left">
                                                             <label class="radio-container " style="color: black">  فعال
-                                                                <input href="{{ url_for('api.post_active', post_id=post._id)}}" id="active" type="radio" checked="checked" name="activition" value="yes" onclick="myFunc2()">
-                                                                <span class="checkmark"></span>
+                                                                <input href="{{ url_for('api.post_active', post_id=post._id)}}" id="active" type="checkbox" checked="checked" name="activition" value="yes" onclick="myFunc2()">
+
                                                             </label>
                                                             <br>
                                                             <label class="radio-container " style="color: black">عیرفعال
-                                                                <input href="{{ url_for('api.post_deactive', post_id=post._id)}}" id="deactive" type="radio" name="activition" value="no" onclick="myFunc()">
-                                                                <span class="checkmark"></span>
+                                                                <input href="{{ url_for('api.post_deactive', post_id=post._id)}}" id="deactive" type="checkbox" name="activition" value="no" onclick="myFunc()">
+
                                                             </label>
                                                         </div>
 
@@ -76,7 +76,7 @@
         alert('پست شما فعال شد.')
     }
     function myFunc3(){
-        alert('پست شما حذف میشود.آیا اطمینان دارید؟')
+        alert('پست شما حذف شد.')
     }
 </script>
 
