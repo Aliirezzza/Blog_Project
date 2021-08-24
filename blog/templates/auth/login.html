@@ -32,17 +32,17 @@
               <input type="password" name="password" class="form-control" placeholder="رمز عبور" required>
             </div>
             <div class="form-group d-md-flex">
-              <div class="w-100 text-md-right">
-                <a href="#">رمز عبور را فراموش کرده ام</a>
+              <div class="w-100 text-md-right" style="text-align: center">
+                <a href="#" style="text-decoration: none; color: white;">رمز عبور را فراموش کرده ام</a>
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-info form-control rounded submit px-3">ورود</button>
+              <button type="submit" class="btn btn-info form-control rounded submit px-3" id="vorod" style="border:none">ورود</button>
             </div>
           </form>
           <div class="w-100 text-center mt-4 text">
-            <p class="mb-0 p">آیا حساب کاربری دارید؟</p>
-            <a type="button" class="p" style="color:darkmagenta;" data-toggle="modal" href="{{ url_for('auth.signup') }}" data-target="#exampleModal"><b>ثبت نام</b></a>
+            <p class="mb-0 p">آیا حساب کاربری ندارید؟</p>
+            <a type="button" class="p" style="color:#29434e;" data-toggle="modal" href="{{ url_for('auth.signup') }}" data-target="#exampleModal"><b>ثبت نام</b></a>
           </div>
         </div>
       </div>
