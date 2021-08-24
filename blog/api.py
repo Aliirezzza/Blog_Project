@@ -154,6 +154,6 @@ def search():
     posts = db.post.find({'$text': {'$search': f"{search_text}"}})
     searched_posts = [post for post in posts]
 
-    return render_template('user/123.html', posts=posts, searched_posts=searched_posts, search_text=search_text)
+    return searched_posts
 
 
