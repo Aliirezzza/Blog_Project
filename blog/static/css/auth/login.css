@@ -44,12 +44,11 @@ direction: rtl;
 }
 .login-wrap {
     position: relative;
-    background: #000232;
+    background: #546e7a;
     border-radius: 5px;
     padding-left: 30px;
     padding-right: 30px;
     /*-webkit-box-shadow: 0px 10px 34px -15px rgb(0 ,0 ,0, / 24%);*/
-    -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
     /*box-shadow: 0px 10px 34px -15px rgb(0 0 0 / 24%);*/
 }
 .pb-5, .py-5 {
@@ -80,7 +79,6 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
     text-align: left;
     /*background-color: #fff;*/
 }
@@ -89,7 +87,6 @@ html {
     font-family: sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 *, *::before, *::after {
     -webkit-box-sizing: border-box;
@@ -99,14 +96,18 @@ html {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-.btn{
+
+#vorod{
+
   color: aliceblue;
-  background-color: #038782;
+  background-color: #29434e;
 
 }
+
 .p{
   color: aliceblue;
 }
+
 .modal-body, .x{
   background-color: #ffffff;
 }
