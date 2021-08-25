@@ -56,7 +56,7 @@ def post_deactive(post_id):
         "_id": post_id
         },{
         '$set': {
-            "activition": 'no'
+            "Active": False
             }
         })
 
@@ -69,7 +69,7 @@ def post_active(post_id):
         "_id": post_id
         }, {
         '$set': {
-            "activition": 'yes'
+            "Active": True
             }
         })
 
@@ -155,5 +155,6 @@ def search():
     searched_posts = [post for post in posts]
 
     return searched_posts
+
 
 
