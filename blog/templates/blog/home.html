@@ -9,136 +9,39 @@
     <script src="{{ url_for('static', filename='js/home/home.js') }}"></script>
 {% endblock %}
 
+
 {% block body %}
 
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">#}
-{##}
-{#                {% for post in posts %}#}
-{##}
-{#                    {% set CONTENT = post.content|string() %}#}
-{#                    <div class="card" style="margin-bottom: 20px">#}
-{#                        <div class="card-header" style="padding: 0">#}
-{#                            <div class="row">#}
-{#                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9"#}
-{#                                     style="padding-right: 0%;">#}
-{##}
-{##}
-{#                                </div>#}
-{#                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3"#}
-{#                                     style="padding-left: 0%;text-align: right;">#}
-{##}
-{#                                    <img#}
-{#                                            src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"#}
-{#                                            alt="photo not found"#}
-{#                                            style="width: 90%;height: 100px; object-fit: cover;">#}
-{##}
-{#                                    <p class="text-dark" style=" margin-top:8%;display: inline">#}
-{#                                        {{ post.author_name }}</p>#}
-{#                                    <br>#}
-{#                                    <p class="text-muted" style="float: right;display: inline; font-size: 16px">#}
-{#                                        {{ post.create_date }}</p>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <a href="{{ url_for("blog.post_detail", post_id=post._id) }}"#}
-{#                           style="color:#000000;text-decoration: none;">#}
-{#                            <div class="card-body">#}
-{#                                <div class="row">#}
-{##}
-{#                                    <div class="col-md-6 col-sm-6 col-xs-6">#}
-{#                                        <h5 class="card-title">{{ post.category }}</h5>#}
-{#                                    </div>#}
-{##}
-{##}
-{#                                    <div class="col-md-6 col-sm-6 col-xs-6">#}
-{#                                        <h4 class="card-title" style="float: right;">{{ post.title }}</h4>#}
-{#                                    </div>#}
-{##}
-{##}
-{#                                </div>#}
-{#                                <p class="card-text" style="float:right;">{{ CONTENT[:70] }}#}
-{#                                </p>#}
-{#                                <img src="{{ url_for('static', filename='media/') }}{{ post.image }}" class="img-fluid"#}
-{#                                     alt="Responsive image" style="object-fit: cover; width: 1000px; height:500px;">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                        <div class="card-footer">#}
-{#                            <div class="container">#}
-{#                                <div class="">#}
-{#                                    <div class="col-md-12 col-sm-12 col-xs-12">#}
-{#                                        {% if not g.user %}#}
-                                            {#                                    useer not login or register so  can't like post  #}
-{#                                            <span class="action-icons">#}
-{#                                            icon like  (disable)  #}
-{#                                            <div class="col-2">#}
-{#                                                <a href="#login_require" data-toggle="modal" data-abc="true">#}
-{#                                                    <i class="fa fa-thumbs-up fa-2x"></i>#}
-{#                                                    number of like #}
-{#                                                    <span class="m-2">{{ post.like|count }}</span>#}
-{#                                                </a>#}
-{#                                            </div>#}
-{#                                            icon dislike  (disable)  #}
-{#                                            <div class="col-2">#}
-{#                                                <a data-abc="true" href="#login_require" data-toggle="modal">#}
-{#                                                    <i class="fa fa-thumbs-down fa-2x"></i>#}
-{#                                                    number of dislike #}
-{#                                                    <span class="m-2">{{ post.dislike|count }}</span>#}
-{#                                                </a>#}
-{#                                            </div>#}
-{#                                            </span>#}
-{#                                        {% else %}#}
-                                            {#                                   useer login so has username then can like post  #}
-{#                                            <span class="action-icons row">#}
-{#                                            icon like  #}
-{#                                            <div class="col-2">#}
-{#                                                <a id="post_like"#}
-{#                                                   href="{{ url_for("api.like", post_id=post._id) }}" data-abc="true">#}
-{#                                                    <i id="svg-like" class="fa fa-thumbs-up fa-2x"#}
-{#                                                            {% if g.user["username"] in post.like %}#}
-{#                                                       style="color: red;"  {% endif %}></i>#}
-{#                                                    number of like #}
-{#                                                    <span class="m-2"#}
-{#                                                          id="like_counter_post">{{ post.like|count }}</span>#}
-{#                                                </a>#}
-{#                                            </div>#}
-{#                                            icon dislike  (enable)  #}
-{#                                            <div class="col-2">#}
-{#                                                <a id="post_dislike"#}
-{#                                                   href="{{ url_for("api.dislike", post_id=post._id) }}"#}
-{#                                                   data-abc="true">#}
-{#                                                    <i id="svg-dislike" class="fa fa-thumbs-down fa-2x"#}
-{#                                                            {% if g.user["username"] in post.dislike %}#}
-{#                                                       style="color: red;"  {% endif %}></i>#}
-{#                                                    number of dislike  (enable)   #}
-{#                                                    <span class="m-2"#}
-{#                                                          id="dislike_counter_post">{{ post.dislike|count }}</span>#}
-{#                                                </a>#}
-{#                                            </div>#}
-{#                                            </span>#}
-{#                                        {% endif %}#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                                <div class="row">#}
-{#                                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 1%;">#}
-{#                                        #}
-{#                                        <span class="badge bg-secondary" style="padding: 1%;"><a#}
-{#                                                href="{{ url_for("blog.tag", tag_name=post.tag) }}"#}
-{#                                                style="text-decoration: none;color:#ffffff">{{ post.tag }}</a></span>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                {% endfor %}#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                {% for post in posts %}
+
+                    {% set CONTENT = post.content|string() %}
+                    <div class="card" style="margin-bottom: 20px">
+                        <div class="card-header" style="padding: 0">
+                            <div class="row">
+                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9"
+                                     style="padding-right: 0%;">
 
 
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                                     style="padding-left: 0%;text-align: right;">
+
+                                    <img
+                                            src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
+                                            alt="photo not found"
+                                            style="width: 90%;height: 100px; object-fit: cover;">
+
+                                    <p class="text-dark" style=" margin-top:8%;display: inline">
+                                        {{ post.author_name }}</p>
+                                    <br>
+                                    <p class="text-muted" style="float: right;display: inline; font-size: 16px">
+                                        {{ post.create_date }}</p>
 
 {% for post in posts %}
 
@@ -156,6 +59,7 @@
                             <img src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
                                  alt="">
                         </div>
+
 {#                        {{ post.author_name }}#}
                         <h3 class="u-text u-text-default-lg u-text-default-xl u-text-1">{{ post.author_username }}</h3>
 {#                        href="{{ url_for("user.author_profile", user_id="") }}{{ post.author_id }}"#}
@@ -170,6 +74,7 @@
                             {% if not g.user %}
 {#                                    useer not login or register so  can't like post  #}
                             <span class="action-icons">
+
 {#                                            icon like  (disable)  #}
                                             <div class="col-2" >
                                                 <a href="#login_require" data-toggle="modal" data-abc="true" >
@@ -187,14 +92,18 @@
                                                 </a>
                                             </div>
                                             </span>
+
                         {% else %}
 {#                                   useer login so has username then can like post  #}
                             <span class="action-icons " >
+
 {#                                            icon like  #}
                                             <div class="col-2" >
                                                 <a id="post_like"
+
                                                    href="{{ url_for("api.like", post_id="") }}{{ post._id }}"
                                                    data-abc="true">
+
                                                     <i id="svg-like" class="fa fa-thumbs-up fa-2x"
                                                             {% if g.user["username"] in post.like %}
                                                        style="color: red;"  {% endif %}></i>
@@ -206,7 +115,9 @@
 {#                                            icon dislike  (enable)  #}
                                             <div class="col-2" >
                                                 <a id="post_dislike"
+
                                                    href="{{ url_for("api.dislike", post_id="") }}{{ post._id }}"
+
                                                    data-abc="true">
                                                     <i id="svg-dislike" class="fa fa-thumbs-down fa-2x"
                                                             {% if g.user["username"] in post.dislike %}
@@ -217,7 +128,9 @@
                                                 </a>
                                             </div>
                                             </span>
+
                         {% endif %}
+
                         </div>
                     </div>
                 </div>
