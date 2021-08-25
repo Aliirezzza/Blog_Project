@@ -129,6 +129,18 @@
                                             </div>
                                             </span>
 
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 1%;">
+                                        {% for tag in post.tag %}
+                                            <span class="badge bg-secondary" style="padding: 1%;"><a
+                                                    href="{{ url_for("blog.tag", tag_name=tag) }}"
+                                                    style="text-decoration: none;color:#ffffff">{{ tag }}</a></span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
                         {% endif %}
 
                         </div>
