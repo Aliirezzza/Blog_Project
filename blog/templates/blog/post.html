@@ -4,7 +4,9 @@
     {#
 <link rel="stylesheet" href="../../static/css/create_post/create_post.css">#}
 {% endblock %}
-
+{% block script %}
+    <script src="{{ url_for('static', filename='js/blog/post.js') }}"></script>
+{% endblock %}
 {% block body %}
 
     <div oncontextmenu='return false' class='snippet-body mb-100 '>
@@ -59,7 +61,68 @@
 
                     <div class="card mt-20 mb-40 ">
                         <div class="card-footer p">
+                            <div class="container">
+                                {% if not g.user %}
+                                {#                                    useer not login or register so  can't like post  #}
+                                <span class="action-icons row">
 
+{#                                            icon like  (disable)  #}
+                                            <div class="col-2">
+                                                <a href="#login_require" data-toggle="modal" data-abc="true">
+                                                    <i class="fa fa-thumbs-up fa-2x"></i>
+{#                                                    number of like #}
+                                                    <span class="m-2">{{ post.like|count }}</span>
+                                                </a>
+                                            </div>
+{#                                            icon dislike  (disable)  #}
+                                            <div class="col-2 ">
+                                                <a data-abc="true" href="#login_require" data-toggle="modal">
+                                                    <i class="fa fa-thumbs-down fa-2x "></i>
+{#                                                    number of dislike #}
+                                                    <span class="m-2">{{ post.dislike|count }}</span>
+                                                </a>
+                                            </div>
+                                            </span>
+
+                            {% else %}
+                                {#                                   useer login so has username then can like post  #}
+                                <span class="action-icons row">
+
+{#                                            icon like  #}
+                                            <div class="col-2">
+                                                <a id="post_like"
+
+                                                   href="{{ url_for("api.like", post_id="") }}{{ post._id }}"
+                                                   data-abc="true">
+
+                                                    <i id="svg-like" class="fa fa-thumbs-up fa-2x"
+                                                            {% if g.user["username"] in post.like %}
+                                                       style="color: red;"  {% endif %}></i>
+{#                                                    number of like #}
+                                                    <span class="m-2"
+                                                          id="like_counter_post">{{ post.like|count }}</span>
+                                                </a>
+                                            </div>
+{#                                            icon dislike  (enable)  #}
+                                            <div class="col-2">
+                                                <a id="post_dislike"
+
+                                                   href="{{ url_for("api.dislike", post_id="") }}{{ post._id }}"
+
+                                                   data-abc="true">
+                                                    <i id="svg-dislike" class="fa fa-thumbs-down fa-2x"
+                                                            {% if g.user["username"] in post.dislike %}
+                                                       style="color: red;"  {% endif %}></i>
+{#                                                    number of dislike  (enable)   #}
+                                                    <span class="m-2"
+                                                          id="dislike_counter_post">{{ post.dislike|count }}</span>
+                                                </a>
+                                            </div>
+                                            </span>
+
+                            {% endif %}
+                            </div>
+                        <br>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     {% for tag in post.tag %}

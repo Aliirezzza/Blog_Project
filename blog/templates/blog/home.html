@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{{ url_for('static', filename='js/home/home.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/blog/home.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -71,7 +71,7 @@
                                             <div class="col-2">
                                                 <a id="post_like"
 
-                                                   href="{{ url_for("api.like", post_id="") }}{{ post._id }}"
+                                                   href=""
                                                    data-abc="true">
 
                                                     <i id="svg-like" class="fa fa-thumbs-up fa-2x"
@@ -86,7 +86,7 @@
                                             <div class="col-2">
                                                 <a id="post_dislike"
 
-                                                   href="{{ url_for("api.dislike", post_id="") }}{{ post._id }}"
+                                                   href=""
 
                                                    data-abc="true">
                                                     <i id="svg-dislike" class="fa fa-thumbs-down fa-2x"
