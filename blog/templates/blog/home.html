@@ -2,89 +2,59 @@
 
 {% block style %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/blog/home.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/blog/home2_post.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blog/home2.css') }}">
 {% endblock %}
 
 {% block script %}
     <script src="{{ url_for('static', filename='js/home/home.js') }}"></script>
 {% endblock %}
 
-
 {% block body %}
 
-{% block body %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                {% for post in posts %}
-
-                    {% set CONTENT = post.content|string() %}
-                    <div class="card" style="margin-bottom: 20px">
-                        <div class="card-header" style="padding: 0">
-                            <div class="row">
-                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9"
-                                     style="padding-right: 0%;">
-
-
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                     style="padding-left: 0%;text-align: right;">
-
-                                    <img
-                                            src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
-                                            alt="photo not found"
-                                            style="width: 90%;height: 100px; object-fit: cover;">
-
-                                    <p class="text-dark" style=" margin-top:8%;display: inline">
-                                        {{ post.author_name }}</p>
-                                    <br>
-                                    <p class="text-muted" style="float: right;display: inline; font-size: 16px">
-                                        {{ post.create_date }}</p>
-
-{% for post in posts %}
+    {% for post in posts %}
 
         {% set CONTENT = post.content|string() %}
         <section class="u-clearfix u-section-1" id="sec-1a4e">
             <div class="u-clearfix u-sheet u-sheet-1">
                 <!--    main image   -->
-                <img class="u-image u-image-round u-radius-20 u-image-1" src="{{ url_for('static', filename='media/') }}{{ post.image }}" alt=""
+                <img class="u-image u-image-round u-radius-20 u-image-1"
+                     src="{{ url_for('static', filename='media/') }}{{ post.image }}" alt=""
                      data-image-width="400" data-image-height="265">
                 <div class="u-container-style u-grey-5 u-group u-radius-16 u-shape-round u-group-1">
                     <!--    author info   -->
                     <div class="u-container-layout u-container-layout-1">
-                        <div alt="" class="u-image u-image-circle u-image-2" data-image-width="2836"
+                        <div alt=""  data-image-width="2836"
                              data-image-height="1875">
-                            <img src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
+                            <img class="u-image u-image-circle u-image-2" src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
                                  alt="">
                         </div>
 
-{#                        {{ post.author_name }}#}
+                        {#                        {{ post.author_name }}#}
                         <h3 class="u-text u-text-default-lg u-text-default-xl u-text-1">{{ post.author_username }}</h3>
-{#                        href="{{ url_for("user.author_profile", user_id="") }}{{ post.author_id }}"#}
+                        {#                        href="{{ url_for("user.author_profile", user_id="") }}{{ post.author_id }}"#}
                         <a href=""
-                           class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-btn-1">درباره نویسنده</a>
+                           class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-btn-1">درباره
+                            نویسنده</a>
                     </div>
                 </div>
                 <!--    like   -->
                 <div class="u-container-style u-grey-5 u-group u-radius-45 u-shape-round u-group-2">
                     <div class="u-container-layout u-container-layout-2">
-                        <div >
+                        <div>
                             {% if not g.user %}
-{#                                    useer not login or register so  can't like post  #}
-                            <span class="action-icons">
+                                {#                                    useer not login or register so  can't like post  #}
+                                <span class="action-icons">
 
 {#                                            icon like  (disable)  #}
-                                            <div class="col-2" >
-                                                <a href="#login_require" data-toggle="modal" data-abc="true" >
+                                            <div class="col-2">
+                                                <a href="#login_require" data-toggle="modal" data-abc="true">
                                                     <i class="fa fa-thumbs-up fa-2x"></i>
 {#                                                    number of like #}
                                                     <span class="m-2">{{ post.like|count }}</span>
                                                 </a>
                                             </div>
 {#                                            icon dislike  (disable)  #}
-                                            <div class="col-2 " >
+                                            <div class="col-2 ">
                                                 <a data-abc="true" href="#login_require" data-toggle="modal">
                                                     <i class="fa fa-thumbs-down fa-2x "></i>
 {#                                                    number of dislike #}
@@ -93,12 +63,12 @@
                                             </div>
                                             </span>
 
-                        {% else %}
-{#                                   useer login so has username then can like post  #}
-                            <span class="action-icons " >
+                            {% else %}
+                                {#                                   useer login so has username then can like post  #}
+                                <span class="action-icons ">
 
 {#                                            icon like  #}
-                                            <div class="col-2" >
+                                            <div class="col-2">
                                                 <a id="post_like"
 
                                                    href="{{ url_for("api.like", post_id="") }}{{ post._id }}"
@@ -113,7 +83,7 @@
                                                 </a>
                                             </div>
 {#                                            icon dislike  (enable)  #}
-                                            <div class="col-2" >
+                                            <div class="col-2">
                                                 <a id="post_dislike"
 
                                                    href="{{ url_for("api.dislike", post_id="") }}{{ post._id }}"
@@ -129,17 +99,19 @@
                                             </div>
                                             </span>
 
-                        {% endif %}
+                            {% endif %}
 
                         </div>
                     </div>
                 </div>
                 <!--    tag   -->
                 <div class="u-container-style u-expanded-width-xs u-grey-5 u-group u-radius-16 u-shape-round u-group-3">
-                    <div class="u-container-layout u-valign-middle-sm u-container-layout-3">
-                        <a href="{{ url_for("blog.tag", tag_name=post.tag) }}"
-                           class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-2-base u-radius-16 u-btn-2">{{ post.tag }}</a>
-                    </div>
+                    {% for tag in post.tag %}
+                        <div class="u-container-layout u-valign-middle-sm u-container-layout-3">
+                            <a href="{{ url_for("blog.tag", tag_name=tag.name) }}"
+                               class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-2-base u-radius-16 u-btn-2">{{ tag.name }}</a>
+                        </div>
+                    {% endfor %}
                 </div>
                 <!--    post body   -->
                 <div class="u-align-center u-container-style u-grey-10 u-group u-radius-16 u-shape-round u-group-4">
@@ -147,7 +119,8 @@
                         <h1 class="u-text u-text-default u-text-2">{{ post.title }}</h1>
                         <p class="u-text u-text-3">{{ CONTENT[:70] }}</p>
                         <a href="{{ url_for("blog.post_detail", post_id="") }}{{ post._id }}"
-                           class="u-btn u-btn-round u-button-style u-color-scheme-summer-time u-color-style-multicolor-1 u-palette-2-base u-radius-50 u-btn-3">ادامه مطلب</a>
+                           class="u-btn u-btn-round u-button-style u-color-scheme-summer-time u-color-style-multicolor-1 u-palette-2-base u-radius-50 u-btn-3">ادامه
+                            مطلب</a>
                     </div>
                 </div>
             </div>
