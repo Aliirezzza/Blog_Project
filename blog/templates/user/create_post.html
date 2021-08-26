@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block style %}
-    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet"
           type="text/css"/>
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css"
@@ -10,8 +9,6 @@
 {% endblock %}
 
 {% block script %}
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type='text/javascript'
             src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
     <script type="text/javascript"
@@ -78,20 +75,20 @@
                                             <!-- select category -->
                                             <div class="row justify-content-center x">
                                                 <div class="col-md-6 rtl x">
-                                                    <select id="select-category" name="category" tabindex="-1"class="btn btn-outline-info" aria-hidden="true">
-                                                        <option disabled="disabled" selected="selected">انتخاب کنید</option>
+                                                    <select style="width: 100%" id="select-category" name="category" tabindex="-1" class="btn btn-outline-info" aria-hidden="true">
+                                                        <option disabled="disabled" selected="selected">--- انتخاب دسته ‌بندی ---</option>
 
                                                     </select>
-                                                    <label for="select-category">دسته بندی پست</label>
+                                                    <label style="display: none" for="select-category">دسته بندی پست</label>
                                                 </div>
                                             </div>
                                             <!-- tags -->
                                             <div class="row pt-3 justify-content-center x">
                                                 <div class="col-md-6 x" id="tag-input">
-                                                    <select style="width: 15rem" id="select-tags" name="tags"
+                                                    <select style="width: 100%" id="select-tags" name="tags"
                                                             multiple="multiple">
                                                     </select>
-                                                    <label for="select-tags">برچسب پست</label>
+                                                    <label style="display: none" for="select-tags">برچسب پست</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,35 +138,6 @@
         </div>
     </div>
 
-{% endblock %}
-{% block js %}
-    <script>
-
-        $.ajax({
-            type: "Get",
-            url: "{{ url_for('api.categories') }}",
-            success: function (resp) {
-                for (let cat of resp.categories) {
-                    $('#select-category').append(`<option>${cat.id}</option>`)
-                }
-            }
-        });
-
-        $.ajax({
-            type: "Get",
-            url: "{{ url_for('api.tags') }}",
-            success: function (resp) {
-                for (let cat of resp.tags) {
-                    $('#select-tags').append(`<option>${cat.name}</option>`)
-                }
-            }
-        });
-
-        $('#select-tags').select2({
-            tags: true
-        });
-
-    </script>
 {% endblock %}
 
 

@@ -1,5 +1,6 @@
 BLOG
 ======
+**We have developed a blog project.**
 
 Install
 -------
@@ -53,4 +54,33 @@ Or on Windows cmd::
     > flask run
 
 Open http://127.0.0.1:5000 in a browser.
+
+**In MongoDB documents should be created in the "Category" collection as shown below:**
+::
+    {
+    "id": "ورزشی",
+    "parent": "#",
+    "text": "ورزشی"
+    }
+
+    {
+    "id": "والیبال",
+    "parent": "ورزشی",
+    "text": "والیبال"
+    }
+
+    {
+    "id": "فوتبال",
+    "parent": "ورزشی",
+    "text": "فوتبال"
+    }
+
+    {
+    "id": "لیگ برتر",
+    "parent": "فوتبال",
+    "text": "لیگ برتر"
+    }
+
+
+
 
