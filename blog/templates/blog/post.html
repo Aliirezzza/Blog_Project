@@ -62,11 +62,11 @@
 
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    {# {% for tagg in tag %}#}
-                                    <span class="badge bg-secondary" style="padding: 1%;">
-                                    <a href="#" style="text-decoration: none;color:#ffffff">{{ post.tag }}</a>
-                                </span>
-                                    {# {% endfor %}#}
+                                    {% for tag in post.tag %}
+                                        <span class="badge bg-secondary" style="padding: 1%;">
+                                            <a href="#" style="text-decoration: none;color:#ffffff">{{ tag.name }}</a>
+                                        </span>
+                                    {% endfor %}
                                 </div>
                             </div>
 

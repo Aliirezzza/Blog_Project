@@ -37,7 +37,7 @@ $(document).ready(function () {
         var url = $(this).attr('href');
         $.ajax({
             url: url,
-            type: "POST",
+            type: "GET",
             data: {
                 like: $('#user_pk').attr('value'),
             },
@@ -68,7 +68,7 @@ $(document).ready(function () {
         var url = $(this).attr('href');
         $.ajax({
             url: url,
-            type: "POST",
+            type: "GET",
             data: {
                 dislike: $('#user_pk').attr('value'),
             },
