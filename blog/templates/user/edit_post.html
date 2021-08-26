@@ -2,14 +2,12 @@
 {% block style %}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/user/edit_post.css') }}">
-    {#    <link rel="stylesheet" href="../../static/css/user/edit_post.css'">#}
 {% endblock %}
 
 {% block script %}
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="{{ url_for('static', filename='js/create_post/create_post.js') }}"></script>
-    {#    <script type='text/javascript' src="../../static/js/create_post/create_post.js"></script>#}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ url_for('static', filename='js/user/create_post.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -57,8 +55,11 @@
                             <div class="form-group">
                                 <div class="row d-flex align-items-center justify-content-center ">
                                     <div class="col-10">
-                                        <input id="tag-input" type="text" name="tag" class="form-control"
-                                               value="{{ post.tag }}" required>
+                                        <select style="width: 100%" id="select-tags" name="tags" multiple="multiple">
+                                            {% for tag in post.tag %}
+                                                <option selected="selected">{{ tag }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="col-2">
                                         <label class="" style="color: white">تگ ها</label>
@@ -103,32 +104,6 @@
 
     </div>
 
-{% endblock %}
-{% block js %}
-    <script>
-
-
-        let tags_li = []
-        $.ajax({
-            type: "Get",
-            url: "{{ url_for('api.tags') }}",
-            success: function (resp) {
-                console.log(resp);
-                for (let tag of resp.tags) {
-                    tags_li.push(tag.name)
-                }
-            }
-        });
-        console.log(tags_li)
-        $("#tag-input").autocomplete({
-            source: tags_li,
-            autoFocus: true,
-            delay: 500,
-            minLength: 0
-        });
-
-
-    </script>
 {% endblock %}
 
 

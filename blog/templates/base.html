@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
-
+    <script src="{{ url_for('static', filename='js/blog/category-tag.js') }}"></script>
     {% block style %}{% endblock %}
     {% block script %}{% endblock %}
 
@@ -177,48 +177,7 @@
         <a class="text-reset fw-bold" href="#">Blog.com</a>
     </div>
 </footer>
-<script>
 
-    $.ajax({
-        type: "Get",
-        url: "{{ url_for('api.tags') }}",
-        success: function (resp) {
-            console.log(resp);
-            for (let tag of resp.tags) {
-                $('#body-tags').append(`<button id="button-tag"><a href="http://127.0.0.1:5000/tag-posts/${tag.name}/">${tag.name}</a></button>`)
-            }
-        }
-    });
-
-
-    $.ajax({
-        type: "Get",
-        url: "{{ url_for('api.categories') }}",
-        success: function (resp) {
-            $('#cat-column').jstree({
-                'core': {
-                    "themes": {
-                        "variant": "large"
-                    },
-                    'data': resp.categories
-                },
-                "types": {
-                    "default": {
-                        "icon": false
-                    },
-                },
-                "plugins":
-                    ["wholerow", "types", "ui", "themes", "html_data"]
-            })
-        },
-    })
-
-    $('#cat-column').bind("select_node.jstree", function (e, data) {
-        let id = data.node.id;
-        window.location.href = `http://127.0.0.1:5000/category-posts/${id}/`;
-    });
-
-</script>
 {% block js %}
 {% endblock %}
 </body>
