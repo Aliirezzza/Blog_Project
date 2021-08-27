@@ -1,6 +1,6 @@
 BLOG
 ======
-**We have developed a blog project.**
+**We have developed a blog project using the MongoDB database.**
 
 Install
 -------
@@ -11,11 +11,7 @@ default Git version is the master branch. ::
 
     # clone the repository
     $ git clone https://github.com/...
-    $ cd flask
-    # checkout the correct version
-    $ git tag  # shows the tagged versions
-    $ git checkout latest-tag-found-above
-    $ cd examples/tutorial
+    $ cd Blog_Project
 
 Create a virtualenv and activate it::
 
@@ -55,32 +51,8 @@ Or on Windows cmd::
 
 Open http://127.0.0.1:5000 in a browser.
 
-**In MongoDB documents should be created in the "Category" collection as shown below:**
+**In this project, "category" data should be created like the file uploaded in the link below:**
 ::
-    {
-    "id": "ورزشی",
-    "parent": "#",
-    "text": "ورزشی"
-    }
 
-    {
-    "id": "والیبال",
-    "parent": "ورزشی",
-    "text": "والیبال"
-    }
-
-    {
-    "id": "فوتبال",
-    "parent": "ورزشی",
-    "text": "فوتبال"
-    }
-
-    {
-    "id": "لیگ برتر",
-    "parent": "فوتبال",
-    "text": "لیگ برتر"
-    }
-
-
-
+    Open https://github.com/mahdisj/Blog_Project/blob/main/category.json in your browser.
 
