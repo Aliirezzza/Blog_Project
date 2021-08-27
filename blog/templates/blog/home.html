@@ -23,9 +23,10 @@
                 <div class="u-container-style u-grey-5 u-group u-radius-16 u-shape-round u-group-1">
                     <!--    author info   -->
                     <div class="u-container-layout u-container-layout-1">
-                        <div alt=""  data-image-width="2836"
+                        <div alt="" data-image-width="2836"
                              data-image-height="1875">
-                            <img class="u-image u-image-circle u-image-2" src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
+                            <img class="u-image u-image-circle u-image-2"
+                                 src="{{ url_for('static', filename='media/') }}{{ post.author_image }}"
                                  alt="">
                         </div>
 
@@ -64,37 +65,30 @@
                                             </span>
 
                             {% else %}
-                                {#                                   useer login so has username then can like post  #}
+{#                                   useer login so has username then can like post  #}
                                 <span class="action-icons ">
-
 {#                                            icon like  #}
                                             <div class="col-2">
-                                                <a id="post_like"
-
-                                                   href=""
-                                                   data-abc="true">
-
-                                                    <i id="svg-like" class="fa fa-thumbs-up fa-2x"
+                                                <a id="{{ post._id }}" onclick="like(this.id)" >
+                                                    <i id="like-{{ post._id }}" class="fa fa-thumbs-up fa-2x"
                                                             {% if g.user["username"] in post.like %}
                                                        style="color: red;"  {% endif %}></i>
 {#                                                    number of like #}
                                                     <span class="m-2"
-                                                          id="like_counter_post">{{ post.like|count }}</span>
+                                                          id="like_counter_{{ post._id }}">{{ post.like|count }}</span>
                                                 </a>
+
                                             </div>
 {#                                            icon dislike  (enable)  #}
                                             <div class="col-2">
-                                                <a id="post_dislike"
-
-                                                   href=""
-
-                                                   data-abc="true">
-                                                    <i id="svg-dislike" class="fa fa-thumbs-down fa-2x"
+                                                <a id="{{ post._id }}"
+                                                   onclick="dislike(this.id)"  >
+                                                    <i id="dislike-{{ post._id }}" class="fa fa-thumbs-down fa-2x"
                                                             {% if g.user["username"] in post.dislike %}
                                                        style="color: red;"  {% endif %}></i>
 {#                                                    number of dislike  (enable)   #}
                                                     <span class="m-2"
-                                                          id="dislike_counter_post">{{ post.dislike|count }}</span>
+                                                          id="dislike_counter_{{ post._id }}">{{ post.dislike|count }}</span>
                                                 </a>
                                             </div>
                                             </span>
@@ -129,3 +123,5 @@
     {% endfor %}
 
 {% endblock %}
+
+
