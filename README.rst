@@ -33,12 +33,13 @@ installing Blog_project::
     $ pip install -e ../..
     $ pip install -e .
 
-Database::
+**Notice about Database:**
 
-Create a "blog" database in MongoDB
-Import category.json in blog database
-  
-  
+Before running project:
+::
+    create a "blog" database in MongoDB and
+    import "category.json" in "blog" database.
+
 Run
 ---
 
@@ -56,8 +57,5 @@ Or on Windows cmd::
 
 Open http://127.0.0.1:5000 in a browser.
 
-**In this project, "category" data should be created like the file uploaded in the link below:**
-::
 
-    Open https://github.com/mahdisj/Blog_Project/blob/main/category.json in your browser.
 
