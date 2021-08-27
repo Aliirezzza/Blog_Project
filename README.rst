@@ -10,7 +10,7 @@ you're reading.** You probably want the latest tagged version, but the
 default Git version is the master branch. ::
 
     # clone the repository
-    $ git clone https://github.com/...
+    $ git clone https://github.com/mahdisj/Blog_Project.git
     $ cd Blog_Project
 
 Create a virtualenv and activate it::
