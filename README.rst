@@ -33,12 +33,11 @@ installing Blog_project::
     $ pip install -e ../..
     $ pip install -e .
 
-Database
----
+Database::
 
-::
 Create a "blog" database in MongoDB
 Import category.json in blog database
+  
   
 Run
 ---
