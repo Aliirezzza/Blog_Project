@@ -3,73 +3,126 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/user/profile.css') }}">
 {#
 <link rel="stylesheet" href="../../static/css/user/profile.css'">#}
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block script %}
 <script src="{{ url_for('static', filename='js/user/profile.js') }}"></script>
 {#
 <script type='text/javascript' src="../../static/js/user/profile.js"></script>#}
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 {% endblock %}
 
 
 {% block body %}
-<div oncontextmenu='return false' class='snippet-body mb-100 rtl'>
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card border-0 shadow rounded-3 my-5" id="base_list" style="overflow: scroll;width: 700px;height: 1000px">
                     <div class="card-body p-4 p-sm-5">
                         <h5 class="card-title text-center mb-5 fw-light fs-5">لیست پست های شما</h5>
+                                                    <div class="cards">
+
                         {% for post in posts %}
-                        <div class="row">
-                            <div class="card m-2" style="width: 650px">
-                                <a href="{{ url_for('api.post_delete', post_id=post._id ) }}"
-                                   class="delarticle btn btn-danger" onclick="myFunc3()">حذف مطلب</a>
+                            <div>
 
+        <a href="" class="card">
+        <img src="{{ url_for('static', filename='media/') }}{{ post.image }}" class="card__image" alt="" />
+        <div class="card__overlay">
+        <div class="card__header">
 
-                                <div class="card-body">
-                                    <h5 class="card-title">{{post.title}}</h5>
-                                    <p class="card-text" id="postctgry">{{post.category}}</p>
-                                    <a href="{{ url_for('blog.post_detail', post_id=post._id ) }}"
-                                       class="viewarticle btn btn-primary">مشاهده مقاله</a>
-                                    <a href="{{ url_for('user.edit_post', post_id=post._id ) }}"
-                                       class="editarticle btn btn-primary" style="margin-right: 20px">ویرایش</a>
-                                    <div style="float: left">
-                                                            <label class="radio-container " style="color: black">  active
-                                                                <input href="{{ url_for('api.post_active', post_id=post._id)}}" id="active" type="radio" checked="checked" name="activition" value="yes" onclick="myFunc2()">
-                                                                <span class="checkmark"></span>
-                                                            </label>
-                                                            <br>
-                                                            <label class="radio-container " style="color: black">deactive
-                                                                <input href="{{ url_for('api.post_deactive', post_id=post._id)}}" id="deactive" type="radio" name="activition" value="no" onclick="myFunc()">
-                                                                <span class="checkmark"></span>
-                                                            </label>
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+          <img class="card__thumb" src="{{ url_for('static', filename='media/') }}{{ post.author_image }}" alt="" />
+          <div class="card__header-text">
+            <h3 class="card__title">{{ g.user["username"] }}</h3>
+            <span class="card__status">{{ post.create_date }}</span>
+          </div>
+        </div>
+        <p class="card__description">{{ post.content}}</p>
+      </div>
+    </a>
+       <br>
+           <div class="row">
+               <a href="{{ url_for('api.post_delete', post_id=post._id ) }}"  class="delarticle btn btn-danger m-1" onclick="myFunc3()" >حذف مطلب</a>
+               <a href="{{ url_for('blog.post_detail', post_id=post._id ) }}" class="viewarticle btn btn-primary m-1">مشاهده مقاله</a>
+               <a href="{{ url_for('user.edit_post', post_id=post._id ) }}" class="editarticle btn btn-primary m-1" style="margin-right: 20px">ویرایش</a>
+           </div>
+                                <div style="float: left">
+                                    <label class="radio-container " style="color: black"> فعال
+                                            <input href="{{ url_for('api.post_active', post_id=post._id)}}" class="active"
+                                                   type="radio" checked="checked" name="activition" value="yes"
+                                                   onclick="myFunc2()">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <br>
+                                        <label class="radio-container " style="color: black">غیرفعال
+                                            <input href="{{ url_for('api.post_deactive', post_id=post._id)}}"
+                                                   class="deactive" type="radio" name="activition" value="no"
+                                                   onclick="myFunc()">
+                                            <span class="checkmark"></span>
+                                        </label>
                                                         </div>
 
-                                </div>
                             </div>
-                            <br>
-                        </div>
+                        {% endfor %}
+                                                    </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-                    {% endfor %}
-                        
                     {% endblock %}
 {% block js %}
 <script>
-    function myFunc(){
-        alert('پست شما غیرفعال شد.')
+
+    function myFunc() {
+        alert('پست شما غیرفعال شد')
     }
-    function myFunc2(){
-        alert('پست شما فعال شد.')
+    function myFunc2() {
+        alert('پست شما فعال شد')
     }
     function myFunc3(){
+        $.post("{{ url_for('api.categories') }}",
+            {
+                "post_id" : post._id
+            })
         alert('پست شما حذف شد.')
     }
+        function activation(post_id) {
+
+        }
+        $('#{post_id}').on('change', function() {
+            var acturl = 'api/post_active' + "/" + post_id +"/";
+            var deacturl = 'api/post_deactive' + "/" + post_id +"/";
+
+            var checkStatus = this.checked ? 'ON' : 'OFF';
+            if (checkStatus == 'ON') {
+                alert('پست شما فعال شد')
+                $.ajax({
+                    type: 'Post',
+                    url: acturl ,
+                    data: {
+
+                    }
+                })
+
+
+            } else {
+                alert('پست شما غیرفعال شد')
+                $.ajax({
+                    type: 'Post',
+                    url: deacturl,
+                    data: {
+
+                    }
+                })
+            }
+        })
+
+
 </script>
 
 {% endblock %}
