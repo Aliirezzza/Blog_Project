@@ -12,7 +12,6 @@ from bson import ObjectId
 from blog.auth import login_required
 from blog.db import get_db
 
-
 bp = Blueprint("api", __name__, url_prefix="/api")
 
 
@@ -35,6 +34,7 @@ def tags():
     resp = {'tags': tags}
     return resp
 
+
 @bp.route("post-delete/<post_id>")
 @login_required
 def post_delete(post_id):
@@ -42,11 +42,13 @@ def post_delete(post_id):
     db.post.remove({"_id": ObjectId(post_id)})
     return redirect(url_for("user.posts_list"))
 
+
 @bp.route("user-profile/<user_id>/", methods=("POST",))
 @login_required
 def user_profile(user_id):
     db = get_db()
     render_template("user/profile.html", )
+
 
 @bp.route("/post-deactive/<post_id>/")
 @login_required
@@ -54,11 +56,11 @@ def post_deactive(post_id):
     db = get_db()
     db.post.update({
         "_id": post_id
-        },{
+    }, {
         '$set': {
             "Active": False
-            }
-        })
+        }
+    })
 
 
 @bp.route("/post-active/<post_id>/")
@@ -67,11 +69,12 @@ def post_active(post_id):
     db = get_db()
     db.post.update({
         "_id": post_id
-        }, {
+    }, {
         '$set': {
             "Active": True
-            }
-        })
+        }
+    })
+
 
 # like api
 @bp.route('/like/<post_id>')
@@ -84,12 +87,13 @@ def like(post_id):
     like = post['like']
     dislike = post['dislike']
     # if request.method == 'POST':
-    if g.user["username"] not in like:        #  user not already like post this state for pervent one user like twice
-        if g.user["username"] not in dislike: #  user not already dislike post  this state for pervent one user like and dislike concurrent
+    if g.user["username"] not in like:  # user not already like post this state for pervent one user like twice
+        if g.user[
+            "username"] not in dislike:  # user not already dislike post  this state for pervent one user like and dislike concurrent
             like.append(g.user["username"])
             db.post.update(
                 {'_id': post['_id']},
-                {'$set': {"like": like,}},
+                {'$set': {"like": like, }},
                 upsert=False, multi=False)
             return {"status": 1}
         else:
@@ -109,7 +113,7 @@ def like(post_id):
         return {"status": 3}
 
 
-#dislike api
+# dislike api
 @bp.route('/dislike/<post_id>')
 @login_required
 def dislike(post_id):
@@ -120,8 +124,9 @@ def dislike(post_id):
     like = post['like']
     dislike = post['dislike']
     # if request.method == 'POST':
-    if g.user["username"] not in dislike:     #  user not already dislike post this state for pervent one user like twice
-        if g.user["username"] not in like:    #  user not already like post  this state for pervent one user like and dislike concurrent
+    if g.user["username"] not in dislike:  # user not already dislike post this state for pervent one user like twice
+        if g.user[
+            "username"] not in like:  # user not already like post  this state for pervent one user like and dislike concurrent
             dislike.append(g.user["username"])
             db.post.update(
                 {'_id': post['_id']},
@@ -145,6 +150,14 @@ def dislike(post_id):
         return {"status": 3}
 
 
-
-
-
+@bp.route('/search/', methods=['POST'])
+def search():
+    if request.method == "POST":
+        search_text = request.form.get("search_text")
+        db = get_db()
+        posts = list(db.post.find({'$text': {'$search': f"{search_text}"}}))
+        for post in posts:
+            post['_id'] = str(post['_id'])
+            post['author_id'] = str(post['author_id'])
+        print(posts)
+        return render_template('blog/search-resault.html', posts=posts)

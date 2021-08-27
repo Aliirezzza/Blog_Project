@@ -17,9 +17,7 @@ bp = Blueprint("user", __name__)
 @bp.route("/profile")
 @login_required
 def profile():
-    db = get_db()
-
-    return render_template("user/profile.html", title='Profile', )
+    return render_template("user/profile.html")
 
 
 @bp.route("/posts-list/")
@@ -76,6 +74,7 @@ def create_post():
                                 "activition": activition,
                                 "author_username": g.user["username"], "author_id": g.user["_id"],
                                 "author_image": g.user["image"], "like": like, "dislike":dislike})
+            db.post.create_index([('title', 'text'), ('content', 'text'), ('author_username', 'text')])
             return redirect(url_for("blog.index"))
 
     return render_template("user/create_post.html")
